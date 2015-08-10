@@ -38,87 +38,109 @@
   )
 
 (defun myorg/init-myorg-export-pdf ()
+  "Org export to pdf"
   (progn
-    "Org export to pdf"
+    (require 'ox-latex)
     (setq org-latex-pdf-process
           '(
-            "xelatex -interaction nonstopmode -output-directory %o %f"
-            "xelatex -interaction nonstopmode -output-directory %o %f"
-            "xelatex -interaction nonstopmode -output-directory %o %f"
-            "rm -fr %b.out %b.log %b.tex auto"))
+            "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "rm -fr %b.out %b.log %b.tex auto"
+            ))
 
     (add-to-list 'org-latex-classes
-                 '("ctexart" 
-                   "\\documentclass[11pt]{
-                 [NO-DEFAULT-PACKAGES]
-                 \\usepackage[utf8]{inputenc}
-                 \\usepackage[T1]{fontenc}
-                 \\usepackage{fixltx2e}
-                 \\usepackage{graphicx}
-                 \\usepackage{longtable}
-                 \\usepackage{float}
-                 \\usepackage{wrapfig}
-                 \\usepackage{rotating}
-                 \\usepackage[normalem]{ulem}
-                 \\usepackage{amsmath}
-                 \\usepackage{textcomp}
-                 \\usepackage{marvosym}
-                 \\usepackage{wasysym}
-                 \\usepackage{amssymb}
-                 \\usepackage{booktabs}
-                 \\usepackage[colorlinks,linkcolor=black,anchorcolor=black,citecolor=black]{hyperref}
-                 \\tolerance=1000
-                 \\usepackage{listings}
-                 \\usepackage{xcolor}
-                 \\lstset{
-                 %ĞĞºÅ
-                 numbers=left,
-                 %±³¾°¿ò
-                 framexleftmargin=10mm,
-                 frame=none,
-                 %±³¾°É«
-                 %backgroundcolor=\\color[rgb]{1,1,0.76},
-                 backgroundcolor=\\color[RGB]{245,245,244},
-                 %ÑùÊ½
-                 keywordstyle=\\bf\\color{blue},
-                 identifierstyle=\\bf,
-                 numberstyle=\\color[RGB]{0,192,192},
-                 commentstyle=\\it\\color[RGB]{0,96,96},
-                 stringstyle=\\rmfamily\\slshape\\color[RGB]{128,0,0},
-                 %ÏÔÊ¾¿Õ¸ñ
-                 showstringspaces=false
-                 }
-                 "
-                   ("\\section{%s}" . "\\section*{%s}")
-                   ("\\subsection{%s}" . "\\subsection*{%s}")
-                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+                 '("ctexart"
+               "\\documentclass[10pt,a4paper]{article}
+                \\usepackage{graphicx}
+                \\usepackage{xcolor}
+                \\usepackage{xeCJK}
+                \\usepackage{lmodern}
+                \\usepackage{verbatim}
+                \\usepackage{fixltx2e}
+                \\usepackage{longtable}
+                \\usepackage{float}
+                \\usepackage{tikz}
+                \\usepackage{wrapfig}
+                \\usepackage{soul}
+                \\usepackage{textcomp}
+                \\usepackage{minted}
+                \\usepackage{listings}
+                \\usepackage{geometry}
+                \\usepackage{algorithm}
+                \\usepackage{algorithmic}
+                \\usepackage{marvosym}
+                \\usepackage{wasysym}
+                \\usepackage{latexsym}
+                \\usepackage{natbib}
+                \\usepackage{fancyhdr}
+                \\usepackage[xetex,colorlinks=true,CJKbookmarks=true,
+                linkcolor=blue,
+                urlcolor=blue,
+                menucolor=blue]{hyperref}
+                \\usepackage{fontspec,xunicode,xltxtra}
+                \\setmainfont[BoldFont=SimHei]{SimSun}
+                \\setsansfont[BoldFont=SimHei]{SimKai}
+                \\setmonofont{Courier}
+                \\newcommand\\fontnamemono{SimKai}%ç­‰å®½å­—ä½“
+                \\newfontinstance\\MONO{\\fontnamemono}
+                \\newcommand{\\mono}[1]{{\\MONO #1}}
+                \\setCJKmainfont[Scale=0.9]{SimHei}%ä¸­æ–‡å­—ä½“
+                \\setCJKmonofont[Scale=0.9]{SimHei}
+                \\hypersetup{unicode=true}
+                \\geometry{a4paper, textwidth=6.5in, textheight=10in,
+                marginparsep=7pt, marginparwidth=.6in}
+                \\definecolor{foreground}{RGB}{220,220,204}%æµ…ç°
+                \\definecolor{background}{RGB}{62,62,62}%æµ…é»‘
+                \\definecolor{preprocess}{RGB}{250,187,249}%æµ…ç´«
+                \\definecolor{var}{RGB}{239,224,174}%æµ…è‚‰è‰²
+                \\definecolor{string}{RGB}{154,150,230}%æµ…ç´«è‰²
+                \\definecolor{type}{RGB}{225,225,116}%æµ…é»„
+                \\definecolor{function}{RGB}{140,206,211}%æµ…å¤©è“
+                \\definecolor{keyword}{RGB}{239,224,174}%æµ…è‚‰è‰²
+                \\definecolor{comment}{RGB}{180,98,4}%æ·±è¤è‰²
+                \\definecolor{doc}{RGB}{175,215,175}%æµ…é“…ç»¿
+                \\definecolor{comdil}{RGB}{111,128,111}%æ·±ç°
+                \\definecolor{constant}{RGB}{220,162,170}%ç²‰çº¢
+                \\definecolor{buildin}{RGB}{127,159,127}%æ·±é“…ç»¿
+                \\punctstyle{kaiming}
+                \\title{}
+                \\fancyfoot[C]{\\bfseries\\thepage}
+                \\chead{\\MakeUppercase\\sectionmark}
+                \\pagestyle{fancy}
+                \\tolerance=1000
+                [NO-DEFAULT-PACKAGES]
+                [NO-PACKAGES]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
     (setq org-latex-default-class "ctexart")
 
     (setq org-latex-listings t)
 
-    ;; Options for \lset command£¨reference to listing Manual)
+    ;; Options for \lset commandï¼ˆreference to listing Manual)
     (setq org-latex-listings-options
           '(
-            ("basicstyle" "\\color{foreground}\\small\\mono")           ; Ô´´úÂë×ÖÌåÑùÊ½
-            ("keywordstyle" "\\color{function}\\bfseries\\small\\mono") ; ¹Ø¼ü´Ê×ÖÌåÑùÊ½
-            ("identifierstyle" "\\color{doc}\\small\\mono")
-            ("commentstyle" "\\color{comment}\\small\\itshape")         ; Åú×¢ÑùÊ½
-            ("stringstyle" "\\color{string}\\small")                    ; ×Ö·û´®ÑùÊ½
-            ("showstringspaces" "false")                                ; ×Ö·û´®¿Õ¸ñÏÔÊ¾
-            ("numbers" "left")                                          ; ĞĞºÅÏÔÊ¾
-            ("numberstyle" "\\color{preprocess}")                       ; ĞĞºÅÑùÊ½
-            ("stepnumber" "1")                                          ; ĞĞºÅµİÔö
-            ("backgroundcolor" "\\color{background}")                   ; ´úÂë¿ò±³¾°É«
-            ("tabsize" "4")                                             ; TABµÈĞ§¿Õ¸ñÊı
-            ("captionpos" "t")                                          ; ±êÌâÎ»ÖÃ top or buttom(t|b)
-            ("breaklines" "true")                                       ; ×Ô¶¯¶ÏĞĞ
-            ("breakatwhitespace" "true")                                ; Ö»ÔÚ¿Õ¸ñ·ÖĞĞ
-            ("showspaces" "false")                                      ; ÏÔÊ¾¿Õ¸ñ
-            ("columns" "flexible")                                      ; ÁĞÑùÊ½
-            ("frame" "single")                                          ; ´úÂë¿ò£ºÒõÓ°ºĞ
-            ("frameround" "tttt")                                       ; ´úÂë¿ò£º Ô²½Ç
+            ("basicstyle" "\\color{foreground}\\small\\SourceCodePro")           ; æºä»£ç å­—ä½“æ ·å¼
+            ("keywordstyle" "\\color{function}\\bfseries\\small\\SourceCodePro") ; å…³é”®è¯å­—ä½“æ ·å¼
+            ("identifierstyle" "\\color{doc}\\small\\SourceCodePro")
+            ("commentstyle" "\\color{comment}\\small\\itshape")         ; æ‰¹æ³¨æ ·å¼
+            ("stringstyle" "\\color{string}\\small")                    ; å­—ç¬¦ä¸²æ ·å¼
+            ("showstringspaces" "false")                                ; å­—ç¬¦ä¸²ç©ºæ ¼æ˜¾ç¤º
+            ("numbers" "left")                                          ; è¡Œå·æ˜¾ç¤º
+            ("numberstyle" "\\color{preprocess}")                       ; è¡Œå·æ ·å¼
+            ("stepnumber" "1")                                          ; è¡Œå·é€’å¢
+            ("backgroundcolor" "\\color{background}")                   ; ä»£ç æ¡†èƒŒæ™¯è‰²
+            ("tabsize" "4")                                             ; TABç­‰æ•ˆç©ºæ ¼æ•°
+            ("captionpos" "t")                                          ; æ ‡é¢˜ä½ç½® top or buttom(t|b)
+            ("breaklines" "true")                                       ; è‡ªåŠ¨æ–­è¡Œ
+            ("breakatwhitespace" "true")                                ; åªåœ¨ç©ºæ ¼åˆ†è¡Œ
+            ("showspaces" "false")                                      ; æ˜¾ç¤ºç©ºæ ¼
+            ("columns" "flexible")                                      ; åˆ—æ ·å¼
+            ("frame" "single")                                          ; ä»£ç æ¡†ï¼šé˜´å½±ç›’
+            ("frameround" "tttt")                                       ; ä»£ç æ¡†ï¼š åœ†è§’
             ("framesep" "0pt")
             ("framerule" "8pt")
             ("rulecolor" "\\color{background}")
@@ -129,8 +151,8 @@
   )
 
 (defun myorg/init-myorg-publish ()
+  "Org publish project"
   (progn
-    "Org publish project"
     (setq org-publish-project-alist
           '(("note-org"
              :base-directory "E:/Mine//Documents/notes/src"
@@ -159,8 +181,8 @@
   )
 
 (defun myorg/init-myorg-capture ()
+  "Org capture templates"
   (progn
-    "Org capture templates"
     ;; org-capture-templates
     (setq org-capture-templates
           '(("t" "Todo" entry (file+headline "E:/Company/TODO/gtd.org" "Tasks")
