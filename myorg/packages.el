@@ -35,6 +35,10 @@
   (myorg/init-myorg-capture)
   (myorg/init-myorg-export-pdf)
   (myorg/init-myorg-publish)
+  (myorg/init-myorg-export-odt)
+  (myorg/init-myorg-clock)
+  (myorg/init-myorg-babel)
+  (myorg/init-myorg-other)
   )
 
 (defun myorg/init-myorg-export-pdf ()
@@ -51,7 +55,7 @@
 
     (add-to-list 'org-latex-classes
                  '("ctexart"
-               "\\documentclass[10pt,a4paper]{article}
+                   "\\documentclass[10pt,a4paper]{article}
                 \\usepackage{graphicx}
                 \\usepackage{xcolor}
                 \\usepackage{xeCJK}
@@ -111,11 +115,11 @@
                 \\tolerance=1000
                 [NO-DEFAULT-PACKAGES]
                 [NO-PACKAGES]"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
     (setq org-latex-default-class "ctexart")
 
     (setq org-latex-listings t)
@@ -177,6 +181,14 @@
              :author "jain_y@126.com"
              )))
     (setq org-export-htmlize-output-type 'inline-css)
+
+    (defadvice org-publish (around org-publish-advice activate)
+      "Stop running major-mode hook when org-publish"
+      (let ((old load-user-customized-major-mode-hook))
+        (setq load-user-customized-major-mode-hook nil)
+        ad-do-it
+        (setq load-user-customized-major-mode-hook old)))
+
     )
   )
 
@@ -206,4 +218,155 @@
                                   "E:/Mine/Documents/notes/src/notes/journal.org"
                                   "E:/Mine/Documents/notes/src/notes/worknotes.org"
                                   "E:/Mine/Documents/notes/src/notes/studynotes.org")))
+
+  (setq org-todo-keywords
+        (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
+                (sequence "WAITING(w@/!)" "SOMEDAY(S)" "PROJECT(P@)" "|" "CANCELLED(c@/!)"))))
+
   )
+
+(defun myorg/init-myorg-export-odt ()
+  "Org export odt"
+  (progn
+
+    (setq org-odt-convert-processes '(("LibreOffice" "soffice --headless --convert-to %f%x --outdir %d %i")))
+
+    ;; @see https://gist.github.com/mwfogleman/95cc60c87a9323876c6c
+    (defun narrow-or-widen-dwim ()
+      "If the buffer is narrowed, it widens. Otherwise, it narrows to region, or Org subtree."
+      (interactive)
+      (cond ((buffer-narrowed-p) (widen))
+            ((region-active-p) (narrow-to-region (region-beginning) (region-end)))
+            ((equal major-mode 'org-mode) (org-narrow-to-subtree))
+            (t (error "Please select a region to narrow to"))))
+
+    ;; Various preferences
+    (setq org-log-done t
+          org-completion-use-ido t
+          org-edit-src-content-indentation 0
+          org-edit-timestamp-down-means-later t
+          org-agenda-start-on-weekday nil
+          org-agenda-span 14
+          org-agenda-include-diary t
+          org-agenda-window-setup 'current-window
+          org-fast-tag-selection-single-key 'expert
+          org-export-kill-product-buffer-when-displayed t
+          ;; org v7
+          org-export-odt-preferred-output-format "docx"
+          ;; org v8
+          org-odt-preferred-output-format "docx"
+          org-tags-column 80
+          ;; org-startup-indented t
+          ;; {{ org 8.2.6 has some performance issue. Here is the workaround.
+          ;; @see http://punchagan.muse-amuse.in/posts/how-i-learnt-to-use-emacs-profiler.html
+          org-agenda-inhibit-startup t ;; ~50x speedup
+          org-agenda-use-tag-inheritance nil ;; 3-4x speedup
+          ;; }}
+          )
+    )
+  )
+
+(defun myorg/init-myorg-clock ()
+  "Org clock"
+  (progn
+
+    ;; Change task state to STARTED when clocking in
+    (setq org-clock-in-switch-to-state "STARTED")
+    ;; Save clock data and notes in the LOGBOOK drawer
+    (setq org-clock-into-drawer t)
+    ;; Removes clocked tasks with 0:00 duration
+    (setq org-clock-out-remove-zero-time-clocks t)
+
+    ;; Show the clocked-in task - if any - in the header line
+    (defun sanityinc/show-org-clock-in-header-line ()
+      (setq-default header-line-format '((" " org-mode-line-string " "))))
+
+    (defun sanityinc/hide-org-clock-from-header-line ()
+      (setq-default header-line-format nil))
+
+    (add-hook 'org-clock-in-hook 'sanityinc/show-org-clock-in-header-line)
+    (add-hook 'org-clock-out-hook 'sanityinc/hide-org-clock-from-header-line)
+    (add-hook 'org-clock-cancel-hook 'sanityinc/hide-org-clock-from-header-line)
+
+    (eval-after-load 'org-clock
+      '(progn
+         (define-key org-clock-mode-line-map [header-line mouse-2] 'org-clock-goto)
+         (define-key org-clock-mode-line-map [header-line mouse-1] 'org-clock-menu)))
+
+    (eval-after-load 'org
+      '(progn
+         (require 'org-clock)
+                                        ; @see http://irreal.org/blog/?p=671
+         (setq org-src-fontify-natively t)
+         ;; (require 'org-fstree)
+         (defun soft-wrap-lines ()
+           "Make lines wrap at window edge and on word boundary,
+        in current buffer."
+           (interactive)
+           ;; (setq truncate-lines nil)
+           (setq word-wrap t)
+           )
+         (add-hook 'org-mode-hook '(lambda ()
+                                     (setq evil-auto-indent nil)
+                                     (soft-wrap-lines)
+                                     ))))
+    )
+  )
+
+(defun myorg/init-myorg-babel ()
+  "active Babel languages"
+  (progn
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((R . t)
+       (emacs-lisp . t)
+       (dot . t)
+       (ditaa . t)
+       (R . t)
+       (python . t)
+       (C . t)
+       (perl . t)
+       (ruby . t)
+       (gnuplot . t)
+       (clojure . t)
+       (sh . t)
+       (ledger . t)
+       (org . t)
+       (plantuml . t)
+       (latex . t)
+       (sql . t)
+       (java . t)
+       ))
+
+    (setq org-plantuml-jar-path "~/.spacemacs.d/plugins/plantuml/plantuml.jar")
+
+    (setf org-latex-default-packages-alist
+          (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
+
+    ))
+
+(defun myorg/init-myorg-other ()
+  "Org clock"
+  (progn
+    (defadvice org-open-at-point (around org-open-at-point-choose-browser activate)
+      (let ((browse-url-browser-function
+             (cond ((equal (ad-get-arg 0) '(4))
+                    'browse-url-generic)
+                   ((equal (ad-get-arg 0) '(16))
+                    'choose-browser)
+                   (t
+                    (lambda (url &optional new)
+                      (w3m-browse-url url t))))))
+        ad-do-it))
+    (setq load-user-customized-major-mode-hook old)
+
+    ;; {{ org2nikola set up
+    (setq org2nikola-output-root-directory "~/.config/nikola")
+    (setq org2nikola-use-google-code-prettify t)
+    (setq org2nikola-prettify-unsupported-language
+          '(elisp "lisp"
+                  emacs-lisp "lisp"))
+    ;; }}
+    )
+  )
+
