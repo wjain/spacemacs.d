@@ -1,4 +1,4 @@
-;;; extensions.el --- jain Layer extensions File for Spacemacs
+;;; packages.el --- vbnet Layer packages File for Spacemacs
 ;;
 ;; Copyright (c) 2012-2014 Sylvain Benner
 ;; Copyright (c) 2014-2015 Sylvain Benner & Contributors
@@ -10,20 +10,20 @@
 ;;
 ;;; License: GPLv3
 
-(setq jain-pre-extensions
+;; List of all packages to install and/or initialize. Built-in packages
+;; which require an initialization must be listed explicitly in the list.
+(setq vbnet-packages
       '(
-        ;; pre extension names go here
+        ;; package names go here
         ))
 
-(setq jain-post-extensions
-      '(
-        ;; post extension names go here
-        ))
+;; List of packages to exclude.
+(setq vbnet-excluded-packages '())
 
-;; For each extension, define a function jain/init-<extension-name>
+;; For each package, define a function vbnet/init-<package-name>
 ;;
-;; (defun jain/init-my-extension ()
-;;   "Initialize my extension"
+;; (defun vbnet/init-my-package ()
+;;   "Initialize my package"
 ;;   )
 ;;
 ;; Often the body of an initialize function uses `use-package'

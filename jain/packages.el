@@ -13,10 +13,10 @@
 ;; List of all packages to install and/or initialize. Built-in packages
 ;; which require an initialization must be listed explicitly in the list.
 (setq jain-packages
-    '(
-      ;; package names go here
-      c-c++
-      ))
+      '(
+        ;; package names go here
+        company-c-headers
+        ))
 
 ;; List of packages to exclude.
 (setq jain-excluded-packages '())
@@ -30,3 +30,22 @@
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
+
+(defun jain/post-init-company-c-headers()
+  (use-package company-c-headers
+    :defer t
+    :init
+    (progn
+      (setq company-c-headers-path-system
+            (quote
+             (
+              "E:/msys32/usr/include/"
+              "E:/msys32/mingw32/include/"
+              "E:/msys32/mingw32/include/c++/5.2.0/"
+              )))
+      (setq company-c-headers-path-user
+            (quote
+             ("include/" "header"
+              )))
+      )
+    ))
