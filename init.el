@@ -33,8 +33,7 @@
      dash
      prodigy
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
+     c-c++
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -43,6 +42,7 @@
      python
      gtags
      chinese
+     irony
      vbnet
      myorg
      jain
