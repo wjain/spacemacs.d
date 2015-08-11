@@ -13,10 +13,10 @@
 ;; List of all packages to install and/or initialize. Built-in packages
 ;; which require an initialization must be listed explicitly in the list.
 (setq jain-packages
-    '(
-      ;; package names go here
-      c-c++
-      ))
+      '(
+        ;; package names go here
+        
+        ))
 
 ;; List of packages to exclude.
 (setq jain-excluded-packages '())
