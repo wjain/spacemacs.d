@@ -358,7 +358,6 @@
                     (lambda (url &optional new)
                       (w3m-browse-url url t))))))
         ad-do-it))
-    (setq load-user-customized-major-mode-hook old)
 
     ;; {{ org2nikola set up
     (setq org2nikola-output-root-directory "~/.config/nikola")
