@@ -43,6 +43,7 @@
      python
      gtags
      chinese
+     vbnet
      myorg
      )
    ;; List of additional packages that will be installed without being
