@@ -60,10 +60,6 @@
 (defun irony/init-company-irony ()
   (use-package company-irony
     :defer t
-    :init
-    (progn
-      (eval-after-load 'company
-        '(add-to-list 'company-backends 'company-irony)))
     )
   )
 
@@ -72,6 +68,7 @@
     :defer t
     :init
     (progn
+      (require 'company-irony)
       ;; Load with `irony-mode` as a grouped backend
       (eval-after-load 'company
         '(add-to-list
