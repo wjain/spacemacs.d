@@ -322,7 +322,6 @@
        (emacs-lisp . t)
        (dot . t)
        (ditaa . t)
-       (R . t)
        (python . t)
        (C . t)
        (perl . t)
@@ -343,7 +342,8 @@
     (setf org-latex-default-packages-alist
           (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
 
-    ))
+    )
+  )
 
 (defun myorg/init-myorg-other ()
   "Org clock"

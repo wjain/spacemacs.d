@@ -41,7 +41,8 @@
      syntax-checking
      python
      gtags
-     chinese
+     (chinese :variables
+              chinese-enable-youdao-dict t)
      irony
      vbnet
      myorg
@@ -180,6 +181,7 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (global-company-mode t)
+  (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
