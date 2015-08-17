@@ -43,7 +43,9 @@
      gtags
      (chinese :variables
               chinese-enable-youdao-dict t)
-     irony
+     ;; irony
+     ycmd
+     company-ycmd
      vbnet
      myorg
      jain
@@ -182,6 +184,8 @@ before layers configuration."
 layers configuration."
   (global-company-mode t)
   (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
+  (set-variable 'ycmd-server-command '("python.exe" "-u" "e:/msys32/hoem/jain.y/git/ycmd/ycmd"))
+  (set-variable 'ycmd-global-config "~/jain.y/ycmd/cpp/ycm/.ycm_extra_conf.py")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
