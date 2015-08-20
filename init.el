@@ -87,10 +87,10 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light
-                         solarized-dark
+   dotspacemacs-themes '(solarized-dark
                          solarized-light
+                         spacemacs-dark
+                         spacemacs-light
                          monokai
                          leuven
                          zenburn)
