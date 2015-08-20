@@ -30,6 +30,7 @@
      semantic                           ; too slow
      markdown
      org
+     pandoc
      dash
      prodigy
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
