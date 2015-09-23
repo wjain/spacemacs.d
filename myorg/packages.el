@@ -53,9 +53,7 @@
             "rm -fr %b.out %b.log %b.tex auto"
             ))
 
-    (add-to-list 'org-latex-classes
-                 '("ctexart"
-                   "\\documentclass[10pt,a4paper]{article}
+    (add-to-list 'org-latex-classes  '("ctexart" "\\documentclass[10pt,a4paper]{article}
                 \\usepackage{graphicx}
                 \\usepackage{xcolor}
                 \\usepackage{xeCJK}
@@ -120,7 +118,54 @@
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                    ("\\paragraph{%s}" . "\\paragraph*{%s}")
                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-    (setq org-latex-default-class "ctexart")
+    ;; (setq org-latex-default-class "ctexart")
+
+    (add-to-list 'org-latex-classes '("macart" "\\documentclass[11pt]{ctexart}
+                                        [NO-DEFAULT-PACKAGES]
+                                        \\usepackage[utf8]{inputenc}
+                                        \\usepackage[T1]{fontenc}
+                                        \\usepackage{fixltx2e}
+                                        \\usepackage{graphicx}
+                                        \\usepackage{longtable}
+                                        \\usepackage{float}
+                                        \\usepackage{wrapfig}
+                                        \\usepackage{rotating}
+                                        \\usepackage[normalem]{ulem}
+                                        \\usepackage{amsmath}
+                                        \\usepackage{textcomp}
+                                        \\usepackage{marvosym}
+                                        \\usepackage{wasysym}
+                                        \\usepackage{amssymb}
+                                        \\usepackage{booktabs}
+                                        \\usepackage[colorlinks,linkcolor=black,anchorcolor=black,citecolor=black]{hyperref}
+                                        \\tolerance=1000
+                                        \\usepackage{listings}
+                                        \\usepackage{xcolor}
+                                        \\lstset{
+                                        %行号
+                                        numbers=left,
+                                        %背景框
+                                        framexleftmargin=10mm,
+                                        frame=none,
+                                        %背景色
+                                        %backgroundcolor=\\color[rgb]{1,1,0.76},
+                                        backgroundcolor=\\color[RGB]{245,245,244},
+                                        %样式
+                                        keywordstyle=\\bf\\color{blue},
+                                        identifierstyle=\\bf,
+                                        numberstyle=\\color[RGB]{0,192,192},
+                                        commentstyle=\\it\\color[RGB]{0,96,96},
+                                        stringstyle=\\rmfamily\\slshape\\color[RGB]{128,0,0},
+                                        %显示空格
+                                        showstringspaces=false
+                                        }
+                                        "
+                                      ("\\section{%s}" . "\\section*{%s}")
+                                      ("\\subsection{%s}" . "\\subsection*{%s}")
+                                      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                                      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    (setq org-latex-default-class "macart")
 
     (setq org-latex-listings t)
 
@@ -228,8 +273,7 @@
 (defun myorg/init-myorg-export-odt ()
   "Org export odt"
   (progn
-
-    (setq org-odt-convert-processes '(("LibreOffice" "soffice --headless --convert-to %f%x --outdir %d %i")))
+    (setq org-odt-convert-processes '(("LibreOffice" "/Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to %f%x --outdir %d %i")))
 
     ;; @see https://gist.github.com/mwfogleman/95cc60c87a9323876c6c
     (defun narrow-or-widen-dwim ()
@@ -318,7 +362,8 @@
   (progn
     (org-babel-do-load-languages
      'org-babel-load-languages
-     '((R . t)
+     '(
+       (R . t)
        (emacs-lisp . t)
        (dot . t)
        (ditaa . t)
