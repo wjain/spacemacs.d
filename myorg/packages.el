@@ -118,7 +118,6 @@
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                    ("\\paragraph{%s}" . "\\paragraph*{%s}")
                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-    ;; (setq org-latex-default-class "ctexart")
 
     (add-to-list 'org-latex-classes '("macart" "\\documentclass[11pt]{ctexart}
                                         [NO-DEFAULT-PACKAGES]
@@ -165,7 +164,10 @@
                                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                                       ("\\paragraph{%s}" . "\\paragraph*{%s}")
                                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-    (setq org-latex-default-class "macart")
+
+    (if (spacemacs/system-is-mac)
+        (setq org-latex-default-class "macart")
+      (setq org-latex-default-class "ctexart"))
 
     (setq org-latex-listings t)
 
