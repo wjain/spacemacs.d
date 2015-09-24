@@ -50,7 +50,7 @@
             "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
             "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
             "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-            ;; "rm -fr %b.out %b.log %b.tex auto"
+            "rm -fr %b.out %b.log %b.tex auto"
             ))
 
    (add-to-list 'org-latex-classes  '("ctexart" "\\documentclass[11pt,a4paper]{ctexart}
@@ -76,19 +76,19 @@
                                         \\usepackage{fancyhdr}
                                         \\usepackage[xetex,colorlinks=true,CJKbookmarks=true,linkcolor=blue,urlcolor=blue,menucolor=blue]{hyperref}
 
-                                        \\definecolor{foreground}{RGB}{220,220,204}%浅灰
-                                        \\definecolor{background}{RGB}{62,62,62}%浅黑
-                                        \\definecolor{preprocess}{RGB}{250,187,249}%浅紫
-                                        \\definecolor{var}{RGB}{239,224,174}%浅肉色
-                                        \\definecolor{string}{RGB}{154,150,230}%浅紫色
-                                        \\definecolor{type}{RGB}{225,225,116}%浅黄
-                                        \\definecolor{function}{RGB}{140,206,211}%浅天蓝
-                                        \\definecolor{keyword}{RGB}{239,224,174}%浅肉色
-                                        \\definecolor{comment}{RGB}{180,98,4}%深褐色
-                                        \\definecolor{doc}{RGB}{175,215,175}%浅铅绿
-                                        \\definecolor{comdil}{RGB}{111,128,111}%深灰
-                                        \\definecolor{constant}{RGB}{220,162,170}%粉红
-                                        \\definecolor{buildin}{RGB}{127,159,127}%深铅绿
+                                        \\definecolor{foreground}{RGB}{220,220,204}      % 浅灰
+                                        \\definecolor{background}{RGB}{100,100,100}         % 浅黑
+                                        \\definecolor{preprocess}{RGB}{250,187,249}      % 浅紫
+                                        \\definecolor{var}{RGB}{239,224,174}             % 浅肉色
+                                        \\definecolor{string}{RGB}{154,150,230}          % 浅紫色
+                                        \\definecolor{type}{RGB}{225,225,116}            % 浅黄
+                                        \\definecolor{function}{RGB}{140,206,211}        % 浅天蓝
+                                        \\definecolor{keyword}{RGB}{239,224,174}         % 浅肉色
+                                        \\definecolor{comment}{RGB}{180,98,4}            % 深褐色
+                                        \\definecolor{doc}{RGB}{175,215,175}             % 浅铅绿
+                                        \\definecolor{comdil}{RGB}{111,128,111}          % 深灰
+                                        \\definecolor{constant}{RGB}{220,162,170}        % 粉红
+                                        \\definecolor{buildin}{RGB}{127,159,127}         % 深铅绿
                                         \\punctstyle{kaiming}
                                         \\title{}
                                         \\fancyfoot[C]{\\bfseries\\thepage}
@@ -98,24 +98,24 @@
                                         \\usepackage{xcolor}
                                         \\usepackage{listings}
                                         \\lstset{
-                                        ;; basicstyle=\\color{foreground}\\small,           % 源代码字体样式
+                                        basicstyle=\\color{foreground}\\small,           % 源代码字体样式
                                         keywordstyle=\\color{function}\\bfseries\\small, % 关键词字体样式
                                         identifierstyle=\\color{doc}\\small,
                                         commentstyle=\\color{comment}\\small,            % 批注样式
-                                        stringstyle=\\color{string}\\small,                    % 字符串样式
-                                        showstringspaces=false,                                % 字符串空格显示
-                                        numbers=left,                                          % 行号显示
-                                        numberstyle=\\color{preprocess},                       % 行号样式
-                                        stepnumber=1,                                          % 行号递增
-                                        ;; backgroundcolor=\\color{background},                   % 代码框背景色
-                                        tabsize=4,                                             % TAB等效空格数
-                                        captionpos=t,                                          % 标题位置 top or buttom(t|b)
-                                        breaklines=true,                                       % 自动断行
-                                        breakatwhitespace=true,                                % 只在空格分行
-                                        showspaces=false,                                      % 显示空格
-                                        columns=flexible,                                      % 列样式
-                                        frame=single,                                          % 代码框：阴影盒
-                                        frameround=tttt,                                       % 代码框： 圆角
+                                        stringstyle=\\color{string}\\small,              % 字符串样式
+                                        showstringspaces=false,                          % 字符串空格显示
+                                        numbers=left,                                    % 行号显示
+                                        numberstyle=\\color{preprocess},                 % 行号样式
+                                        stepnumber=1,                                    % 行号递增
+                                        backgroundcolor=\\color{background},             % 代码框背景色
+                                        tabsize=4,                                       % TAB等效空格数
+                                        captionpos=t,                                    % 标题位置 top or buttom(t|b)
+                                        breaklines=true,                                 % 自动断行
+                                        breakatwhitespace=true,                          % 只在空格分行
+                                        showspaces=false,                                % 显示空格
+                                        columns=flexible,                                % 列样式
+                                        frame=none,                                    % 代码框：阴影盒
+                                        frameround=tttt,                                 % 代码框： 圆角
                                         framesep=0pt,
                                         framerule=8pt,
                                         rulecolor=\\color{background},
@@ -373,15 +373,15 @@
        ))
 
     (setq org-plantuml-jar-path "~/.spacemacs.d/plugins/plantuml/plantuml.jar")
+    (setq org-ditaa-jar-path "~/.spacemacs.d/plugins/ditaa/ditaa0_9.jar")
 
     (setf org-latex-default-packages-alist
           (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
-
     )
   )
 
 (defun myorg/init-myorg-other ()
-  "Org clock"
+  "Org misc"
   (progn
     (defadvice org-open-at-point (around org-open-at-point-choose-browser activate)
       (let ((browse-url-browser-function
@@ -393,6 +393,8 @@
                     (lambda (url &optional new)
                       (w3m-browse-url url t))))))
         ad-do-it))
+
+    (require 'org-protocol)
 
     ;; {{ org2nikola set up
     (setq org2nikola-output-root-directory "~/.config/nikola")
