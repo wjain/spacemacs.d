@@ -114,7 +114,7 @@
                                         breakatwhitespace=true,                          % 只在空格分行
                                         showspaces=false,                                % 显示空格
                                         columns=flexible,                                % 列样式
-                                        frame=none,                                    % 代码框：阴影盒
+                                        frame=none,                                      % 代码框：阴影盒
                                         frameround=tttt,                                 % 代码框： 圆角
                                         framesep=0pt,
                                         framerule=8pt,
