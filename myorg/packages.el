@@ -50,12 +50,12 @@
             "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
             "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
             "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-            "rm -fr %b.out %b.log %b.tex auto"
+            ;; "rm -fr %b.out %b.log %b.tex auto"
             ))
 
-    (add-to-list 'org-latex-classes  '("ctexart" "\\documentclass[10pt,a4paper]{article}
+   (add-to-list 'org-latex-classes  '("ctexart" "\\documentclass[11pt,a4paper]{ctexart}
+                                        [NO-DEFAULT-PACKAGES]
                                         \\usepackage{graphicx}
-                                        \\usepackage{xcolor}
                                         \\usepackage{xeCJK}
                                         \\usepackage{lmodern}
                                         \\usepackage{verbatim}
@@ -66,8 +66,6 @@
                                         \\usepackage{wrapfig}
                                         \\usepackage{soul}
                                         \\usepackage{textcomp}
-                                        \\usepackage{minted}
-                                        \\usepackage{listings}
                                         \\usepackage{geometry}
                                         \\usepackage{algorithm}
                                         \\usepackage{algorithmic}
@@ -76,22 +74,8 @@
                                         \\usepackage{latexsym}
                                         \\usepackage{natbib}
                                         \\usepackage{fancyhdr}
-                                        \\usepackage[xetex,colorlinks=true,CJKbookmarks=true,
-                                        linkcolor=blue,
-                                        urlcolor=blue,
-                                        menucolor=blue]{hyperref}
-                                        \\usepackage{fontspec,xunicode,xltxtra}
-                                        \\setmainfont[BoldFont=SimHei]{SimSun}
-                                        \\setsansfont[BoldFont=SimHei]{SimKai}
-                                        \\setmonofont{Courier}
-                                        \\newcommand\\fontnamemono{SimKai}%等宽字体
-                                        \\newfontinstance\\MONO{\\fontnamemono}
-                                        \\newcommand{\\mono}[1]{{\\MONO #1}}
-                                        \\setCJKmainfont[Scale=0.9]{SimHei}%中文字体
-                                        \\setCJKmonofont[Scale=0.9]{SimHei}
-                                        \\hypersetup{unicode=true}
-                                        \\geometry{a4paper, textwidth=6.5in, textheight=10in,
-                                        marginparsep=7pt, marginparwidth=.6in}
+                                        \\usepackage[xetex,colorlinks=true,CJKbookmarks=true,linkcolor=blue,urlcolor=blue,menucolor=blue]{hyperref}
+
                                         \\definecolor{foreground}{RGB}{220,220,204}%浅灰
                                         \\definecolor{background}{RGB}{62,62,62}%浅黑
                                         \\definecolor{preprocess}{RGB}{250,187,249}%浅紫
@@ -111,8 +95,35 @@
                                         \\chead{\\MakeUppercase\\sectionmark}
                                         \\pagestyle{fancy}
                                         \\tolerance=1000
-                                        [NO-DEFAULT-PACKAGES]
-                                        [NO-PACKAGES]"
+                                        \\usepackage{xcolor}
+                                        \\usepackage{listings}
+                                        \\lstset{
+                                        ;; basicstyle=\\color{foreground}\\small,           % 源代码字体样式
+                                        keywordstyle=\\color{function}\\bfseries\\small, % 关键词字体样式
+                                        identifierstyle=\\color{doc}\\small,
+                                        commentstyle=\\color{comment}\\small,            % 批注样式
+                                        stringstyle=\\color{string}\\small,                    % 字符串样式
+                                        showstringspaces=false,                                % 字符串空格显示
+                                        numbers=left,                                          % 行号显示
+                                        numberstyle=\\color{preprocess},                       % 行号样式
+                                        stepnumber=1,                                          % 行号递增
+                                        ;; backgroundcolor=\\color{background},                   % 代码框背景色
+                                        tabsize=4,                                             % TAB等效空格数
+                                        captionpos=t,                                          % 标题位置 top or buttom(t|b)
+                                        breaklines=true,                                       % 自动断行
+                                        breakatwhitespace=true,                                % 只在空格分行
+                                        showspaces=false,                                      % 显示空格
+                                        columns=flexible,                                      % 列样式
+                                        frame=single,                                          % 代码框：阴影盒
+                                        frameround=tttt,                                       % 代码框： 圆角
+                                        framesep=0pt,
+                                        framerule=8pt,
+                                        rulecolor=\\color{background},
+                                        fillcolor=\\color{white},
+                                        rulesepcolor=\\color{comdil},
+                                        framexleftmargin=10mm
+                                        }
+                                        "
                                       ("\\section{%s}" . "\\section*{%s}")
                                       ("\\subsection{%s}" . "\\subsection*{%s}")
                                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -171,34 +182,7 @@
 
     (setq org-latex-listings t)
 
-    ;; Options for \lset command（reference to listing Manual)
-    (setq org-latex-listings-options
-          '(
-            ("basicstyle" "\\color{foreground}\\small\\SourceCodePro")           ; 源代码字体样式
-            ("keywordstyle" "\\color{function}\\bfseries\\small\\SourceCodePro") ; 关键词字体样式
-            ("identifierstyle" "\\color{doc}\\small\\SourceCodePro")
-            ("commentstyle" "\\color{comment}\\small\\itshape")         ; 批注样式
-            ("stringstyle" "\\color{string}\\small")                    ; 字符串样式
-            ("showstringspaces" "false")                                ; 字符串空格显示
-            ("numbers" "left")                                          ; 行号显示
-            ("numberstyle" "\\color{preprocess}")                       ; 行号样式
-            ("stepnumber" "1")                                          ; 行号递增
-            ("backgroundcolor" "\\color{background}")                   ; 代码框背景色
-            ("tabsize" "4")                                             ; TAB等效空格数
-            ("captionpos" "t")                                          ; 标题位置 top or buttom(t|b)
-            ("breaklines" "true")                                       ; 自动断行
-            ("breakatwhitespace" "true")                                ; 只在空格分行
-            ("showspaces" "false")                                      ; 显示空格
-            ("columns" "flexible")                                      ; 列样式
-            ("frame" "single")                                          ; 代码框：阴影盒
-            ("frameround" "tttt")                                       ; 代码框： 圆角
-            ("framesep" "0pt")
-            ("framerule" "8pt")
-            ("rulecolor" "\\color{background}")
-            ("fillcolor" "\\color{white}")
-            ("rulesepcolor" "\\color{comdil}")
-            ("framexleftmargin" "10mm")
-            )))
+    )
   )
 
 (defun myorg/init-myorg-publish ()
