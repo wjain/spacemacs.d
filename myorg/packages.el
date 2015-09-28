@@ -53,7 +53,7 @@
             "rm -fr %b.out %b.log %b.tex auto"
             ))
 
-   (add-to-list 'org-latex-classes  '("ctexart" "\\documentclass[11pt,a4paper]{ctexart}
+   (add-to-list 'org-latex-classes  '("article" "\\documentclass[11pt,a4paper]{article}
                                         [NO-DEFAULT-PACKAGES]
                                         \\usepackage{graphicx}
                                         \\usepackage{xeCJK}
@@ -75,9 +75,8 @@
                                         \\usepackage{natbib}
                                         \\usepackage{fancyhdr}
                                         \\usepackage[xetex,colorlinks=true,CJKbookmarks=true,linkcolor=blue,urlcolor=blue,menucolor=blue]{hyperref}
-
                                         \\definecolor{foreground}{RGB}{220,220,204}      % 浅灰
-                                        \\definecolor{background}{RGB}{100,100,100}         % 浅黑
+                                        \\definecolor{background}{RGB}{100,100,100}      % 浅黑
                                         \\definecolor{preprocess}{RGB}{250,187,249}      % 浅紫
                                         \\definecolor{var}{RGB}{239,224,174}             % 浅肉色
                                         \\definecolor{string}{RGB}{154,150,230}          % 浅紫色
@@ -130,7 +129,7 @@
                                       ("\\paragraph{%s}" . "\\paragraph*{%s}")
                                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-    (add-to-list 'org-latex-classes '("macart" "\\documentclass[11pt]{ctexart}
+    (add-to-list 'org-latex-classes '("macart" "\\documentclass[11pt]{article}
                                         [NO-DEFAULT-PACKAGES]
                                         \\usepackage[utf8]{inputenc}
                                         \\usepackage[T1]{fontenc}
@@ -175,6 +174,72 @@
                                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                                       ("\\paragraph{%s}" . "\\paragraph*{%s}")
                                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+    (add-to-list 'org-latex-classes
+                 ;; beamer class, for presentations
+                 '("beamer"
+                   "\\documentclass[11pt,professionalfonts]{beamer}
+                    \\mode
+                    \\usetheme{{{{Warsaw}}}}
+                    %\\usecolortheme{{{{beamercolortheme}}}}
+                    \\beamertemplateballitem
+                    \\setbeameroption{show notes}
+                    \\usepackage{graphicx}
+                    \\usepackage{tikz}
+                    \\usepackage{xcolor}
+                    \\usepackage{xeCJK}
+                    \\usepackage{amsmath}
+                    \\usepackage{lmodern}
+                    \\usepackage{fontspec,xunicode,xltxtra}
+                    \\usepackage{polyglossia}
+                    \\usepackage{listings}
+                    \\institute{{{{beamerinstitute}}}}
+                    \\subject{{{{beamersubject}}}}
+                    \\definecolor{foreground}{RGB}{220,220,204}      % 浅灰
+                    \\definecolor{background}{RGB}{100,100,100}      % 浅黑
+                    \\definecolor{preprocess}{RGB}{250,187,249}      % 浅紫
+                    \\definecolor{var}{RGB}{239,224,174}             % 浅肉色
+                    \\definecolor{string}{RGB}{154,150,230}          % 浅紫色
+                    \\definecolor{type}{RGB}{225,225,116}            % 浅黄
+                    \\definecolor{function}{RGB}{140,206,211}        % 浅天蓝
+                    \\definecolor{keyword}{RGB}{239,224,174}         % 浅肉色
+                    \\definecolor{comment}{RGB}{180,98,4}            % 深褐色
+                    \\definecolor{doc}{RGB}{175,215,175}             % 浅铅绿
+                    \\definecolor{comdil}{RGB}{111,128,111}          % 深灰
+                    \\definecolor{constant}{RGB}{220,162,170}        % 粉红
+                    \\definecolor{buildin}{RGB}{127,159,127}         % 深绿铅
+                    \\lstset{
+                    basicstyle=\\color{foreground}\\small,           % 源代码字体样式
+                    keywordstyle=\\color{function}\\bfseries\\small, % 关键词字体样式
+                    identifierstyle=\\color{doc}\\small,
+                    commentstyle=\\color{comment}\\small,            % 批注样式
+                    stringstyle=\\color{string}\\small,              % 字符串样式
+                    showstringspaces=false,                          % 字符串空格显示
+                    %numbers=left,                                    % 行号显示
+                    %numberstyle=\\color{preprocess},                 % 行号样式
+                    %stepnumber=1,                                    % 行号递增
+                    backgroundcolor=\\color{background},             % 代码框背景色
+                    tabsize=4,                                       % TAB等效空格数
+                    captionpos=t,                                    % 标题位置 top or buttom(t|b)
+                    breaklines=true,                                 % 自动断行
+                    breakatwhitespace=true,                          % 只在空格分行
+                    showspaces=false,                                % 显示空格
+                    columns=flexible,                                % 列样式
+                    frame=none,                                      % 代码框：阴影盒
+                    frameround=tttt,                                 % 代码框： 圆角
+                    framesep=0pt,
+                    framerule=8pt,
+                    rulecolor=\\color{background},
+                    fillcolor=\\color{white},
+                    rulesepcolor=\\color{comdil},
+                    framexleftmargin=10mm
+                    }
+                    "
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\begin{frame}[fragile]\\frametitle{%s}"
+                    "\\end{frame}"
+                    "\\begin{frame}[fragile]\\frametitle{%s}"
+                    "\\end{frame}")))
 
     (if (spacemacs/system-is-mac)
         (setq org-latex-default-class "macart")
