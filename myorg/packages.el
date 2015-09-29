@@ -243,7 +243,7 @@
 
     (if (spacemacs/system-is-mac)
         (setq org-latex-default-class "macart")
-      (setq org-latex-default-class "ctexart"))
+      (setq org-latex-default-class "article"))
 
     (setq org-latex-listings t)
 
