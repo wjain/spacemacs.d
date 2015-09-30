@@ -34,6 +34,9 @@
      dash
      prodigy
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     html
+     javascript
+     php
      c-c++
      (shell :variables
             shell-default-height 30
@@ -45,8 +48,6 @@
      (chinese :variables
               chinese-enable-youdao-dict t)
      ;; irony
-     ycmd
-     company-ycmd
      vbnet
      myorg
      jain
@@ -186,7 +187,7 @@ before layers configuration."
 layers configuration."
   (global-company-mode t)
   (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
-  (set-variable 'ycmd-server-command '("python.exe" "-u" "E:/msys64/home/jain.y/github/ycmd/ycmd"))
+  (set-variable 'ycmd-server-command '("python.exe" "-u" "~/github/ycmd/ycmd"))
   (set-variable 'ycmd-global-config "~/github/ycmd/cpp/ycm/.ycm_extra_conf.py")
   (add-hook 'c-mode-hook 'ycmd-mode)
   (add-hook 'c++-mode-hook 'ycmd-mode)
