@@ -37,6 +37,7 @@
      html
      javascript
      php
+     ycmd
      c-c++
      (shell :variables
             shell-default-height 30
