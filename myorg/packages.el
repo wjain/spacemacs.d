@@ -305,7 +305,7 @@
             ("l" "LifeNote" entry (file+headline "~/Documents/notes/src/notes/liftnotes.org" "LiftNotes")
              "* %U %?\n\n  %i" :prepend t :empty-lines 1)
 
-            ("s" "StudyNot" entry (file+headline "~/Documents/notes/src/notes/studynotes.org" "StudyNotes")
+            ("s" "StudyNote" entry (file+headline "~/Documents/notes/src/notes/studynotes.org" "StudyNotes")
              "* %U %?\n\n  %i" :prepend t :empty-lines 1)
             ))
 
