@@ -18,20 +18,33 @@
 (defun config-coding-system ()
   "Set coding"
   (progn
-    (set-language-environment "Japanese")
-    (prefer-coding-system 'iso-2022-jp)
-    (prefer-coding-system 'shift_jis)
-    (prefer-coding-system 'euc-jp)
-    (prefer-coding-system 'utf-8)
-    (set-default-coding-systems 'shift_jis)
+    ;; Japanese
+    ;; (set-language-environment "Japanese")
+    ;; (prefer-coding-system 'iso-2022-jp)
+    ;; (prefer-coding-system 'shift_jis)
+    ;; (prefer-coding-system 'euc-jp)
+    ;; (prefer-coding-system 'utf-8)
+    ;; (set-default-coding-systems 'shift_jis)
     ;; (set-terminal-coding-system 'shift_jis)
-    (set-buffer-file-coding-system 'shift_jis)
+    ;; (set-buffer-file-coding-system 'shift_jis)
     ;; (set-default-coding-systems 'utf-8)
-    (set-terminal-coding-system 'utf-8)
-    (set-buffer-file-coding-system 'utf-8)
+    ;; (set-terminal-coding-system 'utf-8)
+    ;; (set-buffer-file-coding-system 'utf-8)
     ;; (prefer-coding-system 'utf-8-unix)
     ;; (set-keyboard-coding-system 'utf-8)
     ;; (setq default-buffer-file-coding-system 'utf-8)
+
+    ;; Chinese-GB
+    ;; (set-language-environment 'Chinese-GB)
+    ;; (set-keyboard-coding-system 'euc-cn)
+    ;; (set-clipboard-coding-system 'euc-cn)
+    ;; (set-terminal-coding-system 'euc-cn)
+    ;; (set-buffer-file-coding-system 'euc-cn)
+    ;; (set-selection-coding-system 'euc-cn)
+    ;; (modify-coding-system-alist 'process "*" 'euc-cn)
+    ;; (setq default-process-coding-system 
+    ;;       '(euc-cn . euc-cn))
+    ;; (setq-default pathname-coding-system 'euc-cn)
     )
   )
 
