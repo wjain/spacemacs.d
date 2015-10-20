@@ -255,8 +255,8 @@
   (progn
     (setq org-publish-project-alist
           '(("note-org"
-             :base-directory "E:/Mine//Documents/notes/src"
-             :publishing-directory "E:/Mine/Documents/notes/publish"
+             :base-directory "~/Documents/notes/src"
+             :publishing-directory "~/Documents/notes/publish"
              :base-extension "org"
              :recursive t
              :publishing-function org-publish-org-to-html
@@ -293,27 +293,27 @@
   (progn
     ;; org-capture-templates
     (setq org-capture-templates
-          '(("t" "Todo" entry (file+headline "E:/Company/TODO/gtd.org" "Tasks")
+          '(("t" "Todo" entry (file+headline "~/Documents/TODO/gtd.org" "Tasks")
              "* TODO %?\n  %i" :prepend t)
 
-            ("j" "Journal" entry (file+datetree "E:/Mine/Documents/notes/src/notes/journal.org" "Journal")
+            ("j" "Journal" entry (file+datetree "~/Documents/notes/src/notes/journal.org" "Journal")
              "* %?\nEntered on %U\n %i\n %a" :prepend t :empty-lines 1)
 
-            ("w" "WorkNote" entry (file+headline "E:/Mine/Documents/notes/src/notes/worknotes.org" "WorkNotes")
+            ("w" "WorkNote" entry (file+headline "~/Documents/notes/src/notes/worknotes.org" "WorkNotes")
              "* %U %?\n\n  %i" :prepend t :empty-lines 1)
 
-            ("l" "LifeNote" entry (file+headline "E:/Mine/Documents/notes/src/notes/liftnotes.org" "LiftNotes")
+            ("l" "LifeNote" entry (file+headline "~/Documents/notes/src/notes/liftnotes.org" "LiftNotes")
              "* %U %?\n\n  %i" :prepend t :empty-lines 1)
 
-            ("s" "StudyNot" entry (file+headline "E:/Mine/Documents/notes/src/notes/studynotes.org" "StudyNotes")
+            ("s" "StudyNot" entry (file+headline "~/Documents/notes/src/notes/studynotes.org" "StudyNotes")
              "* %U %?\n\n  %i" :prepend t :empty-lines 1)
             ))
 
-    (setq org-agenda-files (list  "E:/Company/TODO/gtd.org"
-                                  "E:/Mine/Documents/notes/src/notes/liftnotes.org"
-                                  "E:/Mine/Documents/notes/src/notes/journal.org"
-                                  "E:/Mine/Documents/notes/src/notes/worknotes.org"
-                                  "E:/Mine/Documents/notes/src/notes/studynotes.org")))
+    (setq org-agenda-files (list  "~/Documents/TODO/gtd.org"
+                                  "~/Documents/notes/src/notes/liftnotes.org"
+                                  "~/Documents/notes/src/notes/journal.org"
+                                  "~/Documents/notes/src/notes/worknotes.org"
+                                  "~/Documents/notes/src/notes/studynotes.org")))
 
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
