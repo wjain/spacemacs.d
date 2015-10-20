@@ -53,7 +53,7 @@
             "rm -fr %b.out %b.log %b.tex auto"
             ))
 
-   (add-to-list 'org-latex-classes  '("article" "\\documentclass[11pt,a4paper]{article}
+    (add-to-list 'org-latex-classes  '("ctexart" "\\documentclass[11pt,a4paper]{ctexart}
                                         [NO-DEFAULT-PACKAGES]
                                         \\usepackage{graphicx}
                                         \\usepackage{xeCJK}
@@ -243,7 +243,7 @@
 
     (if (spacemacs/system-is-mac)
         (setq org-latex-default-class "macart")
-      (setq org-latex-default-class "article"))
+      (setq org-latex-default-class "ctexart"))
 
     (setq org-latex-listings t)
 
