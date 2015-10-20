@@ -195,7 +195,7 @@ layers configuration."
     )
   
   (set-variable 'ycmd-global-config "~/github/ycmd/cpp/ycm/.ycm_extra_conf.py")
-  (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
+  (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
   (add-hook 'c-mode-hook 'ycmd-mode)
   (add-hook 'c++-mode-hook 'ycmd-mode)
 )
