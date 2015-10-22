@@ -198,8 +198,8 @@ layers configuration."
     )
 
   (if (spacemacs/system-is-mswindows)
-      (set-variable 'ycmd-server-command '("python.exe" "-u" "E:/msys64/home/jain.y/github/ycmd/ycmd"))
-    (set-variable 'ycmd-server-command '("python.exe" "-u" "~/github/ycmd/ycmd"))
+      (set-variable 'ycmd-server-command '("python" "-u" "E:/msys64/home/jain.y/github/ycmd/ycmd"))
+    (set-variable 'ycmd-server-command '("python" "-u" "~/github/ycmd/ycmd"))
     )
 
   (set-variable 'ycmd-global-config "~/github/ycmd/cpp/ycm/.ycm_extra_conf.py")
