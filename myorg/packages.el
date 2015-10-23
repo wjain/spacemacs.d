@@ -53,10 +53,23 @@
           ;; xelatex -interaction nonstopmode %1 %2 %3 %4 %5
           ;; exit 0
           (setq pdf-latex-command "xelatex.bat")
-        ;; write to xelatex.bat on windows
-        ;; xelatex -interaction nonstopmode "$*"
-        ;; exit 0
-        (setq pdf-latex-command "xelatex.sh")
+
+        ;; ##### xelatex.py start ######
+        ;; #!/usr/bin/python
+        ;; import sys
+        ;; import subprocess
+
+        ;; xelatex_cmd = ["xelatex"]
+        ;; xelatex_cmd.append("-interaction nonstopmode")
+
+        ;; for i in range(1, len(sys.argv)):
+        ;; xelatex_cmd.append(sys.argv[i])
+
+        ;; subprocess.call(xelatex_cmd)
+
+        ;; exit(0)
+        ;; ##### xelatex.py end ######
+        (setq pdf-latex-command "xelatex.py")
         )
       )
     )
