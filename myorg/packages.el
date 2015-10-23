@@ -16,6 +16,7 @@
       '(
         ;; package names go here
         org
+        latex-preview-pane
         ))
 
 ;; List of packages to exclude.
@@ -39,6 +40,23 @@
   (myorg/init-myorg-clock)
   (myorg/init-myorg-babel)
   (myorg/init-myorg-other)
+  )
+
+(defun myorg/init-latex-preview-pane ()
+  (use-package latex-preview-pane
+    :defer t
+    :init
+    (progn
+      (latex-preview-pane-enable)
+      ( if (spacemacs/system-is-mswindows)
+          ;; write to xelatex.bat on windows
+          ;; xelatex.exe -interaction nonstopmode %1 %2 %3 %4 %5
+          ;; exit 0
+          (setq pdf-latex-command "xelatex.bat")
+        (setq pdf-latex-command "xelatex.sh")
+        )
+      )
+    )
   )
 
 (defun myorg/init-myorg-export-pdf ()
