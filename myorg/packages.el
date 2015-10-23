@@ -50,9 +50,12 @@
       (latex-preview-pane-enable)
       ( if (spacemacs/system-is-mswindows)
           ;; write to xelatex.bat on windows
-          ;; xelatex.exe -interaction nonstopmode %1 %2 %3 %4 %5
+          ;; xelatex -interaction nonstopmode %1 %2 %3 %4 %5
           ;; exit 0
           (setq pdf-latex-command "xelatex.bat")
+        ;; write to xelatex.bat on windows
+        ;; xelatex -interaction nonstopmode "$*"
+        ;; exit 0
         (setq pdf-latex-command "xelatex.sh")
         )
       )
