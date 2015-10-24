@@ -69,7 +69,7 @@
 
         ;; exit(0)
         ;; ##### xelatex.py end ######
-        (setq pdf-latex-command "xelatex.py")
+        (setq pdf-latex-command "~/.spacemacs.d/plugins/xelatex/xelatex.py")
         )
       )
     )
@@ -275,9 +275,7 @@
                     "\\begin{frame}[fragile]\\frametitle{%s}"
                     "\\end{frame}")))
 
-    (if (spacemacs/system-is-mac)
-        (setq org-latex-default-class "macart")
-      (setq org-latex-default-class "ctexart"))
+    (setq org-latex-default-class "ctexart")
 
     (setq org-latex-listings t)
 
