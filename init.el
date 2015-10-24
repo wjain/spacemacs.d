@@ -197,12 +197,9 @@ layers configuration."
     (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
     )
 
-  (if (spacemacs/system-is-mswindows)
-      (set-variable 'ycmd-server-command '("python" "-u" "E:/msys64/home/jain.y/github/ycmd/ycmd"))
-    (set-variable 'ycmd-server-command '("python" "-u" "~/github/ycmd/ycmd"))
-    )
-
+  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
   (set-variable 'ycmd-global-config "~/github/ycmd/cpp/ycm/.ycm_extra_conf.py")
+  
   (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
   (add-hook 'c-mode-hook 'ycmd-mode)
   (add-hook 'c++-mode-hook 'ycmd-mode)
