@@ -17,6 +17,7 @@
         ;; package names go here
         org
         latex-preview-pane
+        org-page
         ))
 
 ;; List of packages to exclude.
@@ -54,23 +55,59 @@
           ;; exit 0
           (setq pdf-latex-command "xelatex.bat")
 
-        ;; ##### xelatex.py start ######
-        ;; #!/usr/bin/python
-        ;; import sys
-        ;; import subprocess
-
-        ;; xelatex_cmd = ["xelatex"]
-        ;; xelatex_cmd.append("-interaction nonstopmode")
-
-        ;; for i in range(1, len(sys.argv)):
-        ;; xelatex_cmd.append(sys.argv[i])
-
-        ;; subprocess.call(xelatex_cmd)
-
-        ;; exit(0)
-        ;; ##### xelatex.py end ######
-        (setq pdf-latex-command "~/.spacemacs.d/plugins/xelatex/xelatex.py")
+        ;; #!/bin/bash
+        ;; xelatex -interaction nonstopmode $*
+        ;; exit 0
+        (setq pdf-latex-command "~/.spacemacs.d/plugins/xelatex/xelatex.sh")
         )
+      )
+    )
+  )
+
+
+(defun myorg/init-org-page ()
+  (use-package org-page
+    :defer t
+    :init
+    (progn
+      (require 'org-page)
+      (setq op/repository-directory "~/github/jain0y.github.io/")
+      (setq op/site-domain "http://jain0y.github.io/")
+      (setq op/site-main-title "Jain's Page")
+      (setq op/site-sub-title "Jain's 闲言碎语。")
+      (setq op/personal-github-link "https://github.com/jain0y")
+      (setq op/personal-disqus-shortname "jain_y")
+      ;; (setq op/personal-google-analytics-id "UA-41088132-1")
+      (setq op/category-config-alist
+            '(("blog" ;; this is the default configuration
+               :show-meta t
+               :show-comment t
+               :uri-generator op/generate-uri
+               :uri-template "/blog/%y/%m/%d/%t/"
+               :sort-by :date     ;; how to sort the posts
+               :category-index t) ;; generate category index or not
+              ("wiki"
+               :show-meta t
+               :show-comment nil
+               :uri-generator op/generate-uri
+               :uri-template "/wiki/%t/"
+               :sort-by :mod-date
+               :category-index t)
+              ("index"
+               :show-meta nil
+               :show-comment nil
+               :uri-generator op/generate-uri
+               :uri-template "/"
+               :sort-by :date
+               :category-index nil)
+              ("about"
+               :show-meta nil
+               :show-comment nil
+               :uri-generator op/generate-uri
+               :uri-template "/about/"
+               :sort-by :date
+               :category-index nil)))
+      (setq op/theme 'org-page-theme-wy)
       )
     )
   )
