@@ -53,8 +53,7 @@
           ;; write to xelatex.bat on windows
           ;; xelatex -interaction nonstopmode %1 %2 %3 %4 %5
           ;; exit 0
-          (setq pdf-latex-command "xelatex.bat")
-
+          (setq pdf-latex-command "~/.spacemacs.d/plugins/xelatex/xelatex.bat")
         ;; #!/bin/bash
         ;; xelatex -interaction nonstopmode $*
         ;; exit 0
