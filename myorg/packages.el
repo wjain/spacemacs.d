@@ -71,13 +71,13 @@
     :init
     (progn
       (require 'org-page)
-      (setq op/repository-directory "~/github/jain0y.github.io/")
+      (setq op/repository-directory "~/github/jain0y.github.com/")
       (setq op/site-domain "http://jain0y.github.io/")
       (setq op/site-main-title "Jain's Page")
       (setq op/site-sub-title "Jain's 闲言碎语。")
       (setq op/personal-github-link "https://github.com/jain0y")
       (setq op/personal-disqus-shortname "jain_y")
-      ;; (setq op/personal-google-analytics-id "UA-41088132-1")
+      (setq op/personal-google-analytics-id "UA-69292321-1")
       (setq op/category-config-alist
             '(("blog" ;; this is the default configuration
                :show-meta t
@@ -107,7 +107,7 @@
                :uri-template "/about/"
                :sort-by :date
                :category-index nil)))
-      (setq op/theme 'org-page-theme-wy)
+      ;; (setq op/theme 'org-page-theme-wy)
       )
     )
   )
