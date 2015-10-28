@@ -48,7 +48,7 @@
     :defer t
     :init
     (progn
-      (latex-preview-pane-enable)
+      ;; (latex-preview-pane-enable)
       ( if (spacemacs/system-is-mswindows)
           ;; write to xelatex.bat on windows
           ;; xelatex -interaction nonstopmode %1 %2 %3 %4 %5
@@ -106,7 +106,7 @@
                :uri-template "/about/"
                :sort-by :date
                :category-index nil)))
-      ;; (setq op/theme 'org-page-theme-wy)
+      (setq op/theme 'jain)
       )
     )
   )
