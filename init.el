@@ -37,6 +37,7 @@
      html
      javascript
      php
+     myphp
      ycmd
      c-c++
      csharp
@@ -64,7 +65,6 @@
    dotspacemacs-excluded-packages '(
                                     evil-indent-textobject
                                     evil-mc
-                                    php-extras
                                     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -203,6 +203,9 @@ layers configuration."
   (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
   (add-hook 'c-mode-hook 'ycmd-mode)
   (add-hook 'c++-mode-hook 'ycmd-mode)
+
+  ;; https://github.com/syl20bnr/spacemacs/issues/2705
+  (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
