@@ -51,10 +51,10 @@ growlnotify = D:\Program Files (x86)\Growl for Windows\growlnotify.exe
 If (param_appicon = "emacs")
 {
   appIcon = E:\msys64\mingw64\share\emacs\24.5\etc\images\icons\hicolor\32x32\apps\emacs.png
-  run, %growlnotify% /t:%param_title% /ai:%appIcon% /s:true %param_msg%
+  run, %growlnotify% /t:"%param_title%" /ai:"%appIcon%" /s:true "%param_msg%"
 }
 else
 {
-  run, %growlnotify% /t:%param_title% /s:true %param_msg%
+  run, %growlnotify% /t:"%param_title%" /s:true "%param_msg%"
 }
 
