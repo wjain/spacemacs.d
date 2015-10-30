@@ -7,12 +7,10 @@ param_title = ""
 param_msg = ""
 param_prioity = ""
 param_sticky = ""
-params = ""
 
 Loop, %0% 
 {
   param := %A_Index%
-  params = %params% x%param%
   If (param = "--appIcon")
   {
     param_appicon := A_Index + 1
