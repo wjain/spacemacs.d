@@ -75,7 +75,7 @@
       (setq op/site-main-title "Jain's Page")
       (setq op/site-sub-title "Jain's 闲言碎语。")
       (setq op/personal-github-link "https://github.com/jain0y")
-      (setq op/personal-disqus-shortname "jain_y")
+      (setq op/personal-disqus-shortname "jain0y")
       (setq op/personal-google-analytics-id "UA-69292321-1")
       (setq op/category-config-alist
             '(("blog" ;; this is the default configuration
