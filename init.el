@@ -193,6 +193,12 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (global-company-mode t)
+
+  (setq solarized-use-variable-pitch nil
+        solarized-scale-org-headlines nil)
+
+  (spacemacs/load-theme 'solarized-dark)
+
   (if (spacemacs/system-is-mac)
       (spacemacs//set-monospaced-font   "Source Code Pro" "华文仿宋" 14 16)
     (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
