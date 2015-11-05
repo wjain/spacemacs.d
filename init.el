@@ -194,13 +194,21 @@ before layers configuration."
 layers configuration."
   (global-company-mode t)
 
-  (setq solarized-use-variable-pitch nil
-        solarized-scale-org-headlines nil)
+  ;; (setq solarized-use-variable-pitch nil
+  ;;       solarized-scale-org-headlines nil)
+  ;; (spacemacs/load-theme 'solarized-dark)
 
-  (spacemacs/load-theme 'solarized-dark)
+  (setq monokai-use-variable-pitch nil
+        monokai-height-plus-1 1
+        monokai-height-plus-2 1
+        monokai-height-plus-3 1
+        monokai-height-plus-4 1
+        monokai-height-minus-1 1
+        )
+  (spacemacs/load-theme 'monokai)
 
   (if (spacemacs/system-is-mac)
-      (spacemacs//set-monospaced-font   "Source Code Pro" "华文仿宋" 14 16)
+      (spacemacs//set-monospaced-font   "Source Code Pro" "华文仿宋" 12 14)
     (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
     )
 
@@ -217,3 +225,25 @@ layers configuration."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((eval when
+           (fboundp
+            (quote aggressive-indent-mode))
+           (aggressive-indent-mode -1))
+     (eval when
+           (fboundp
+            (quote rainbow-mode))
+           (rainbow-mode 1))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
