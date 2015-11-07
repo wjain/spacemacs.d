@@ -352,7 +352,6 @@
         (setq load-user-customized-major-mode-hook nil)
         ad-do-it
         (setq load-user-customized-major-mode-hook old)))
-
     )
   )
 
@@ -396,7 +395,6 @@
     (if (spacemacs/system-is-mac)
         (setq org-odt-convert-processes '(("LibreOffice" "/Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to %f%x --outdir %d %i")))
       (setq org-odt-convert-processes '(("LibreOffice" "soffice --headless --convert-to %f%x --outdir %d %i"))))
-    
 
     ;; @see https://gist.github.com/mwfogleman/95cc60c87a9323876c6c
     (defun narrow-or-widen-dwim ()
@@ -538,4 +536,3 @@
     ;; }}
     )
   )
-
