@@ -70,12 +70,12 @@
     :init
     (progn
       (require 'org-page)
-      (setq op/repository-directory "~/github/jain0y.github.com/")
+      (setq op/repository-directory "~/github/wjain.github.com/")
       (setq op/site-domain "http://jain0y.github.io/")
       (setq op/site-main-title "Jain's Page")
       (setq op/site-sub-title "Jain's 闲言碎语。")
-      (setq op/personal-github-link "https://github.com/jain0y")
-      (setq op/personal-disqus-shortname "jain0y")
+      (setq op/personal-github-link "https://github.com/wjain")
+      (setq op/personal-disqus-shortname "Jain")
       (setq op/personal-google-analytics-id "UA-69292321-1")
       (setq op/category-config-alist
             '(("blog" ;; this is the default configuration
