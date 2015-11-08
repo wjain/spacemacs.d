@@ -194,18 +194,18 @@ before layers configuration."
 layers configuration."
   (global-company-mode t)
 
-  ;; (setq solarized-use-variable-pitch nil
-  ;;       solarized-scale-org-headlines nil)
-  ;; (spacemacs/load-theme 'solarized-dark)
+  (setq solarized-use-variable-pitch nil
+        solarized-scale-org-headlines nil)
+  (spacemacs/load-theme 'solarized-dark)
 
-  (setq monokai-use-variable-pitch nil
-        monokai-height-plus-1 1
-        monokai-height-plus-2 1
-        monokai-height-plus-3 1
-        monokai-height-plus-4 1
-        monokai-height-minus-1 1
-        )
-  (spacemacs/load-theme 'monokai)
+  ;; (setq monokai-use-variable-pitch nil
+  ;;       monokai-height-plus-1 1
+  ;;       monokai-height-plus-2 1
+  ;;       monokai-height-plus-3 1
+  ;;       monokai-height-plus-4 1
+  ;;       monokai-height-minus-1 1
+  ;;       )
+  ;; (spacemacs/load-theme 'monokai)
 
   (if (spacemacs/system-is-mac)
       (spacemacs//set-monospaced-font   "Source Code Pro" "华文仿宋" 12 14)
