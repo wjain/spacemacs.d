@@ -58,3 +58,12 @@
   )
 
 (init-jain)
+
+;; Fix youdao-dictionary-search `Invalid date:'
+(defun url-cookie-expired-p (cookie)
+  "Return non-nil if COOKIE is expired."
+  (let ((exp (url-cookie-expires cookie)))
+    (and (> (length exp) 0)
+         (condition-case ()
+             (> (float-time) (float-time (date-to-time exp)))
+           (error nil)))))
