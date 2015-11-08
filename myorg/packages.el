@@ -35,8 +35,8 @@
 
 (defun myorg/post-init-org ()
   (myorg/init-myorg-capture)
-  (myorg/init-myorg-export-pdf)
   (myorg/init-myorg-publish)
+  (myorg/init-myorg-export-pdf)
   (myorg/init-myorg-export-odt)
   (myorg/init-myorg-clock)
   (myorg/init-myorg-babel)
@@ -315,6 +315,11 @@
 
     (setq org-latex-listings t)
 
+    ;; MobileOrg
+    (setq org-mobile-directory "~/Dropbox/Dropbox")
+    (setq org-mobile-files org-agenda-files)
+    (setq org-directory "~/Documents/TODO/")
+    (setq org-mobile-inbox-for-pull "~/Documents/TODO/inbox.org")
     )
   )
 
