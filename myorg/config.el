@@ -13,9 +13,3 @@
 ;; Variables
 
 
-(setq alert-default-style 'growl)
-
-(if (spacemacs/system-is-mswindows)
-    (setq alert-growl-command "~/.spacemacs.d/plugins/growlforwindows/growlnotify.exe")
- )
-
