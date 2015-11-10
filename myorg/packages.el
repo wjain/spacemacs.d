@@ -597,6 +597,4 @@
 
   (setq appt-disp-window-function (function my-appt-display))
   (setq appt-delete-window-function 'ignore)
-
-  (appt-disp-window 10 "10" "test")
   )
