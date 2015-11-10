@@ -16,6 +16,7 @@
       '(
         ;; package names go here
         org
+        org-pomodoro
         latex-preview-pane
         org-page
         ))
@@ -43,6 +44,13 @@
   (myorg/init-myorg-other)
   (myorg/init-myorg-notify)
   )
+
+(defun myorg/init-org-pomodoro ()
+  (progn
+    (setq alert-default-style 'growl)
+    (when (spacemacs/system-is-mswindows)
+        (setq alert-growl-command "~/.spacemacs.d/plugins/growlforwindows/growlnotify.exe")
+        )))
 
 (defun myorg/init-latex-preview-pane ()
   (use-package latex-preview-pane
@@ -346,7 +354,7 @@
              :recursive t
              :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
              :publishing-function org-publish-attachment)
-            ("note" 
+            ("note"
              :components ("note-org" "note-static")
              :author "jain_y@126.com"
              )))
@@ -545,31 +553,28 @@
 
 (defun myorg/init-myorg-notify ()
   "growl and appt"
-  (progn
-    (setq alert-default-style 'growl)
 
-    (if (spacemacs/system-is-mswindows)
-        (setq alert-growl-command "~/.spacemacs.d/plugins/growlforwindows/growlnotify.exe")
-      )
-
-    ;; (require 'appt)
-    (setq appt-time-msg-list nil)    ;; clear existing appt list
-    (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
-    (setq
-     appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
-     appt-display-mode-line nil     ;; don't show in the modeline
-     appt-display-format 'window    ;; pass warnings to the designated window function
-     )
-    (appt-activate 1)                ;; activate appointment notification
-    (display-time)                   ;; activate time display
-    (run-at-time "24:01" 3600 'org-agenda-to-appt)           ;; update appt list hourly
-    (add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt) ;; update appt list on agenda view
-
-    ;; 保存時にorg-agenda-to-apptを実行
-    (add-hook 'org-mode-hook
-              (lambda() (add-hook 'before-save-hook
-                                  'org-agenda-to-appt)))
+  (setq appt-growl-command (executable-find "growlnotify"))
+  (when (spacemacs/system-is-mswindows)
+      (setq appt-growl-command "~/.spacemacs.d/plugins/growlforwindows/growlnotify.exe")
     )
+
+  (setq appt-time-msg-list nil)    ;; clear existing appt list
+  (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
+  (setq
+   appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
+   appt-display-mode-line nil     ;; don't show in the modeline
+   appt-display-format 'window    ;; pass warnings to the designated window function
+   )
+  (appt-activate 1)                ;; activate appointment notification
+  (display-time)                   ;; activate time display
+  (run-at-time "24:01" 3600 'org-agenda-to-appt)           ;; update appt list hourly
+  (add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt) ;; update appt list on agenda view
+
+  ;; 保存時にorg-agenda-to-apptを実行
+  (add-hook 'org-mode-hook
+            (lambda() (add-hook 'before-save-hook
+                                'org-agenda-to-appt)))
 
   (setq appt-coding-system 'utf-8)
   (if (spacemacs/system-is-mswindows)
@@ -579,7 +584,7 @@
       )
 
   (defun appt-growl-notify (title msg)
-    (shell-command (concat alert-growl-command
+    (shell-command (concat appt-growl-command
                            " --message "    (encode-coding-string msg appt-coding-system)
                            " --title "      (encode-coding-string title appt-coding-system)
                            " --appIcon Emacs")))
@@ -587,10 +592,11 @@
   ;; designate the window function for my-appt-send-notification
   (defun my-appt-display (min-to-app new-time msg)
     (appt-growl-notify
-     (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
-     (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
+     (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title
+     (format "'%s'" msg)))                                ;; passed to -message
 
   (setq appt-disp-window-function (function my-appt-display))
   (setq appt-delete-window-function 'ignore)
 
+  (appt-disp-window 10 "10" "test")
   )
