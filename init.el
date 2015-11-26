@@ -212,7 +212,7 @@ layers configuration."
     (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
     )
 
-  (set-variable 'ycmd-server-command `("python", "-u", (expand-file-name "~/Github/ycmd/ycmd/__main__.py")))
+  (set-variable 'ycmd-server-command `("python", "-u", (expand-file-name "~/github/ycmd/ycmd/__main__.py")))
   (set-variable 'ycmd-global-config "~/.spacemacs.d/plugins/ycmd/ycm_extra_conf.py")
 
   (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
