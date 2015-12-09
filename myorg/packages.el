@@ -325,7 +325,7 @@
     (setq org-latex-listings t)
 
     ;; MobileOrg
-    (setq org-mobile-directory "~/Dropbox/MobileOrg")
+    (setq org-mobile-directory "~/Dropbox/Dropbox")
     (setq org-mobile-files org-agenda-files)
     (setq org-directory "~/Documents/TODO/")
     (setq org-mobile-inbox-for-pull "~/Documents/TODO/inbox.org")
