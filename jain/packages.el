@@ -64,7 +64,10 @@
 (defun jain/init-web-mode ()
   "Initialize my package"
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
-  )
+  (add-hook 'js-mode-hook (lambda ()
+                            (tern-mode t)
+                            (add-to-list 'company-backends 'company-tern)))
+    )
 
 (defun jain/init-impatient-mode ()
   "Initialize impatient-mode"
