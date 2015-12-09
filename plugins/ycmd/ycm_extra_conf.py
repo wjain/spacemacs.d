@@ -10,10 +10,10 @@ flags = [
   # '-Wno-variadic-macros',
   # '-fexceptions',
   # '-DNDEBUG',
-  # '-std=c++11',
-  '-std=c99'
-  # '-x',
-  # 'c++',
+  '-std=c++11',
+  # '-std=c99'
+  '-x',
+  'c++'
 ]
 
 

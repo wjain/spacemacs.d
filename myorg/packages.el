@@ -80,7 +80,7 @@
     (progn
       (require 'org-page)
       (setq op/repository-directory "~/github/wjain.github.com/")
-      (setq op/site-domain "http://jain0y.github.io/")
+      (setq op/site-domain "http://wjain.github.io/")
       (setq op/site-main-title "Jain's Page")
       (setq op/site-sub-title "Jain's 闲言碎语。")
       (setq op/personal-github-link "https://github.com/wjain")
@@ -598,3 +598,19 @@
   (setq appt-disp-window-function (function my-appt-display))
   (setq appt-delete-window-function 'ignore)
   )
+
+(defun jain/org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/DONE" 'file))
+
+(defun jain/org-archive-cancelled-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/CANCELLED" 'file))
