@@ -16,6 +16,8 @@
       '(
         ;; package names go here
         ;; company-c-headers
+        web-mode
+        impatient-mode
         ))
 
 ;; List of packages to exclude.
@@ -58,3 +60,15 @@
          (condition-case ()
              (> (float-time) (float-time (date-to-time exp)))
            (error nil)))))
+
+(defun jain/init-web-mode ()
+  "Initialize my package"
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  )
+
+(defun jain/init-impatient-mode ()
+  "Initialize impatient-mode"
+  (use-package impatient-mode
+    :defer t
+    )
+  )
