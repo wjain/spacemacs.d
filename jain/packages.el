@@ -64,6 +64,10 @@
 (defun jain/init-web-mode ()
   "Initialize my package"
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  (add-hook 'js-mode-hook 'tern-mode)
+  (if (spacemacs/system-is-mswindows)
+      (setq tern-command (cons (executable-find "tern") '()))
+    )
   )
 
 (defun jain/init-impatient-mode ()
