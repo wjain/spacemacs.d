@@ -54,6 +54,7 @@
     ;; more useful frame title, that show either a file or
     ;; a buffer name (if the buffer isn't visiting a file)
     (setq frame-title-format `((setq my-frame-title-format "emacs@%b %f")))
+    (setq c-default-style "cc-mode")
     )
   )
 
