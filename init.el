@@ -37,6 +37,7 @@
      autohotkey
      html
      javascript
+     java
      php
      myphp
      ycmd
@@ -212,12 +213,28 @@ layers configuration."
     (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
     )
 
-  (set-variable 'ycmd-server-command `("python", "-u", (expand-file-name "~/github/ycmd/ycmd/__main__.py")))
+  (if (spacemacs/system-is-mswindows)
+      (set-variable 'ycmd-server-command `("e:/Python27/python.exe", "-u", (expand-file-name "~/github/ycmd/ycmd/__main__.py")))
+    (set-variable 'ycmd-server-command `("python", (expand-file-name "~/github/ycmd/ycmd/__main__.py"))))
+
   (set-variable 'ycmd-global-config "~/.spacemacs.d/plugins/ycmd/ycm_extra_conf.py")
 
   (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
   (add-hook 'c-mode-hook 'ycmd-mode)
   (add-hook 'c++-mode-hook 'ycmd-mode)
+
+  (require 'eclimd)
+  (if (spacemacs/system-is-mswindows)
+      (setq eclim-eclipse-root "E:/Developer/eclipse")
+    (setq eclim-eclipse-root "/Developer/eclipse")
+    )
+
+  (setq eclim-eclipse-dirs '(eclim-eclipse-root))
+  (setq eclim-executable (concat eclim-eclipse-root "/eclim"))
+  (setq eclimd-executable (concat eclim-eclipse-root "/eclimd"))
+  (require 'company-emacs-eclim)
+  (company-emacs-eclim-setup)
+
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
@@ -230,6 +247,9 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ede-project-directories
+   (quote
+    ("e:/msys64/home/jain.y/Project/C++/EmployeeDatabase")))
  '(safe-local-variable-values
    (quote
     ((eval when
