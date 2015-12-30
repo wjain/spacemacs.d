@@ -18,6 +18,7 @@
         ;; company-c-headers
         web-mode
         impatient-mode
+        nodejs-repl
         ))
 
 ;; List of packages to exclude.
@@ -72,6 +73,13 @@
 (defun jain/init-impatient-mode ()
   "Initialize impatient-mode"
   (use-package impatient-mode
+    :defer t
+    )
+  )
+
+(defun jain/init-nodejs-repl ()
+  "Initialize nodejs-repl-mode"
+  (use-package nodejs-repl
     :defer t
     )
   )
