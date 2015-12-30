@@ -38,6 +38,8 @@
      html
      javascript
      java
+     (clojure :variables
+              clojure-enable-fancify-symbols t)
      php
      myphp
      ycmd
