@@ -522,6 +522,9 @@
 
     (setf org-latex-default-packages-alist
           (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
+
+    (setq org-babel-clojure-backend 'cider)
+
     )
   )
 
