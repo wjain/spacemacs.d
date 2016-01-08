@@ -68,6 +68,9 @@
   (add-hook 'js-mode-hook (lambda ()
                             (tern-mode t)
                             (add-to-list 'company-backends 'company-tern)))
+  (if (spacemacs/system-is-mswindows)
+      (setq tern-command (cons (executable-find "tern") '()))
+    )
     )
 
 (defun jain/init-impatient-mode ()
