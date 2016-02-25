@@ -51,6 +51,7 @@ values."
      ycmd
      c-c++
      csharp
+     rust
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -270,6 +271,7 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+  (setq-default rust-enable-racer t)
   )
 
 (defun dotspacemacs/user-config ()
@@ -318,6 +320,7 @@ layers configuration. You are free to put any user code."
   (require 'company-emacs-eclim)
   (company-emacs-eclim-setup)
 
+  (setq racer-cmd "~/.cargo/bin/racer")
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
