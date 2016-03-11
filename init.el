@@ -47,11 +47,11 @@ values."
      (clojure :variables
               clojure-enable-fancify-symbols t)
      php
-     myphp
-     ycmd
-     c-c++
+     ;; ycmd
+     (c-c++ :variables
+            c-c++-enable-clang-support t)
      csharp
-     rust
+     ;; rust
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -61,11 +61,10 @@ values."
      gtags
      (chinese :variables
               chinese-enable-youdao-dict t)
-     ;; irony
-     vbnet
+     ;; vbnet
      myorg
      jain
-     dokuwiki-mode
+     ;; dokuwiki-mode
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -298,29 +297,29 @@ layers configuration. You are free to put any user code."
     (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
     )
 
-  (if (spacemacs/system-is-mswindows)
-      (set-variable 'ycmd-server-command `("e:/Python27/python.exe", "-u", (expand-file-name "~/github/ycmd/ycmd/__main__.py")))
-    (set-variable 'ycmd-server-command `("python", (expand-file-name "~/github/ycmd/ycmd/__main__.py"))))
+  ;; (if (spacemacs/system-is-mswindows)
+  ;;     (set-variable 'ycmd-server-command `("e:/Python27/python.exe", "-u", (expand-file-name "~/github/ycmd/ycmd/__main__.py")))
+  ;;   (set-variable 'ycmd-server-command `("python", (expand-file-name "~/github/ycmd/ycmd/__main__.py"))))
 
-  (set-variable 'ycmd-global-config "~/.spacemacs.d/plugins/ycmd/ycm_extra_conf.py")
+  ;; (set-variable 'ycmd-global-config "~/.spacemacs.d/plugins/ycmd/ycm_extra_conf.py")
 
-  (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
-  (add-hook 'c-mode-hook 'ycmd-mode)
-  (add-hook 'c++-mode-hook 'ycmd-mode)
+  ;; (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
+  ;; (add-hook 'c-mode-hook 'ycmd-mode)
+  ;; (add-hook 'c++-mode-hook 'ycmd-mode)
 
-  (require 'eclimd)
-  (if (spacemacs/system-is-mswindows)
-      (setq eclim-eclipse-root "E:/Developer/eclipse")
-    (setq eclim-eclipse-root "/Developer/eclipse")
-    )
+  ;; (require 'eclimd)
+  ;; (if (spacemacs/system-is-mswindows)
+  ;;     (setq eclim-eclipse-root "E:/Developer/eclipse")
+  ;;   (setq eclim-eclipse-root "/Developer/eclipse")
+  ;;   )
 
-  (setq eclim-eclipse-dirs '(eclim-eclipse-root))
-  (setq eclim-executable (concat eclim-eclipse-root "/eclim"))
-  (setq eclimd-executable (concat eclim-eclipse-root "/eclimd"))
-  (require 'company-emacs-eclim)
-  (company-emacs-eclim-setup)
+  ;; (setq eclim-eclipse-dirs '(eclim-eclipse-root))
+  ;; (setq eclim-executable (concat eclim-eclipse-root "/eclim"))
+  ;; (setq eclimd-executable (concat eclim-eclipse-root "/eclimd"))
+  ;; (require 'company-emacs-eclim)
+  ;; (company-emacs-eclim-setup)
 
-  (setq racer-cmd "~/.cargo/bin/racer")
+  ;; (setq racer-cmd "~/.cargo/bin/racer")
 
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
