@@ -23,6 +23,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     spacemacs-helm
      auto-completion
      better-defaults
      (colors :variables
@@ -117,7 +118,7 @@ values."
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
    ;; List of items to show in the startup buffer. If nil it is disabled.
-   ;; Possible values are: `recents' `bookmarks' `projects'.
+   ;; Possible values are: `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; (default '(recents projects))
    dotspacemacs-startup-lists '(recents projects)
    ;; Number of recent files to show in the startup buffer. Ignored if
@@ -128,10 +129,10 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-dark
-                         solarized-light
-                         spacemacs-dark
+   dotspacemacs-themes '(spacemacs-dark
                          spacemacs-light
+                         solarized-dark
+                         solarized-light
                          monokai
                          zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -177,6 +178,10 @@ values."
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
+   ;; Size (in MB) above which spacemacs will prompt to open the large file
+   ;; literally to avoid performance issues. Opening a file literally means that
+   ;; no major mode or minor modes are active. (default is 1)
+   dotspacemacs-large-file-size 1
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
@@ -184,9 +189,7 @@ values."
    dotspacemacs-auto-save-file-location 'cache
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
-   ;; If non nil then `ido' replaces `helm' for some commands. For now only
-   ;; `find-files' (SPC f f), `find-spacemacs-file' (SPC f e s), and
-   ;; `find-contrib-file' (SPC f e c) are replaced. (default nil)
+   ;; If non nil then `ido' replaces `helm' for some commands.
    dotspacemacs-use-ido nil
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
@@ -198,7 +201,7 @@ values."
    dotspacemacs-helm-position 'bottom
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state nil
+   dotspacemacs-enable-paste-transient-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -229,11 +232,15 @@ values."
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
+   ;; If non nil show the titles of transient states. (default t)
+   dotspacemacs-show-transient-state-title t
+   ;; If non nil show the color guide hint for transient state keys. (default t)
+   dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
-   ;; scrolling overrides the default behavior of Emacs which recenters the
-   ;; point when it reaches the top or bottom of the screen. (default t)
+   ;; scrolling overrides the default behavior of Emacs which recenters point
+   ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
@@ -242,6 +249,10 @@ values."
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
+   ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
+   ;; over any automatically added closing parenthesis, bracket, quote, etc…
+   ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
+   dotspacemacs-smart-closing-parenthesis nil
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -267,16 +278,21 @@ values."
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put almost
-any user code here.  The exception is org related code, which should be placed
-in `dotspacemacs/user-config'."
+It is called immediately after `dotspacemacs/init', before layer configuration
+executes.
+ This function is mostly useful for variables that need to be set
+before packages are loaded. If you are unsure, you should try in setting them in
+`dotspacemacs/user-config' first."
   (setq-default rust-enable-racer t)
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
-layers configuration. You are free to put any user code."
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place you code here."
   (global-company-mode t)
 
   (setq solarized-use-variable-pitch nil
