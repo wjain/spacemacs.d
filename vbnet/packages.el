@@ -15,6 +15,7 @@
 (setq vbnet-packages
       '(
         ;; package names go here
+        (vbnet-mode :location local)
         ))
 
 ;; List of packages to exclude.
@@ -29,3 +30,33 @@
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
+
+
+(defun vbnet/init-vbnet-mode ()
+  "Init vbnet mode"
+  (use-package vbnet-mode
+    :init
+    (progn
+      (autoload 'vbnet-mode "vbnet-mode" "Mode for editing VB.NET code." t)
+      (setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vb\\)$" .
+                                       vbnet-mode)) auto-mode-alist))
+      )
+    :config
+    (progn
+      (defun my-vbnet-mode-fn ()
+        "My hook for VB.NET mode"
+        (interactive)
+        (turn-on-font-lock)
+        (turn-on-auto-revert-mode)
+        (setq indent-tabs-mode nil)
+        (setq vbnet-mode-indent 4)
+        (setq vbnet-want-imenu t)
+        (require 'flymake)
+        ;; (flymake-mode 1)
+        (ggtags-mode 1)
+        (pangu-spacing-mode 0)
+        )
+      (add-hook 'vbnet-mode-hook 'my-vbnet-mode-fn)
+      )
+    )
+  )
