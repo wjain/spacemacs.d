@@ -19,6 +19,8 @@
         web-mode
         impatient-mode
         nodejs-repl
+        php-mode
+        geben
         ))
 
 ;; List of packages to exclude.
@@ -83,6 +85,22 @@
 (defun jain/init-nodejs-repl ()
   "Initialize nodejs-repl-mode"
   (use-package nodejs-repl
+    :defer t
+    )
+  )
+
+(defun jain/init-php-mode ()
+  (use-package php-mode
+    :init
+    (when (spacemacs/system-is-mswindows)
+      (add-to-list 'load-path "~/.emacs.d/.cache/quelpa/build/php-extras")
+      (require 'php-extras)
+      )
+    )
+  )
+
+(defun jain/init-geben ()
+  (use-package geben
     :defer t
     )
   )
