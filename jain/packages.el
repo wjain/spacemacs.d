@@ -21,6 +21,7 @@
         nodejs-repl
         php-mode
         geben
+        (doxymacs :location local)
         ))
 
 ;; List of packages to exclude.
@@ -104,3 +105,18 @@
     :defer t
     )
   )
+
+(defun jain/init-doxymacs ()
+  "Initialize doxymacs"
+  (use-package doxymacs
+    :init
+    (progn
+      (add-hook 'c-mode-common-hook 'doxymacs-mode)
+      (add-hook 'php-mode-common-hook 'doxymacs-mode))
+    :config
+    (progn
+      (defun my-doxymacs-font-lock-hook ()
+        (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode) (eq major-mode 'php-mode))
+            (doxymacs-font-lock)))
+      (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+      (spacemacs|hide-lighter doxymacs-mode))))
