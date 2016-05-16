@@ -16,10 +16,10 @@
       '(
         ;; package names go here
         ;; company-c-headers
-        my-web-mode
+        web-mode
         impatient-mode
         nodejs-repl
-        my-php-mode
+        php-mode
         geben
         (doxymacs :location local)
         ))
@@ -65,7 +65,7 @@
              (> (float-time) (float-time (date-to-time exp)))
            (error nil)))))
 
-(defun jain/init-my-web-mode ()
+(defun jain/post-web-mode ()
   "Initialize my package"
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
   (add-hook 'js-mode-hook (lambda ()
@@ -90,7 +90,7 @@
     )
   )
 
-(defun jain/init-my-php-mode ()
+(defun jain/post-php-mode ()
   (use-package php-mode
     :init
     (when (spacemacs/system-is-mswindows)
