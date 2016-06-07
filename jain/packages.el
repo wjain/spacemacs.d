@@ -20,6 +20,7 @@
         impatient-mode
         nodejs-repl
         php-mode
+        ac-php
         geben
         (doxymacs :location local)
         ))
@@ -97,6 +98,12 @@
       (add-to-list 'load-path "~/.emacs.d/.cache/quelpa/build/php-extras")
       (require 'php-extras)
       )
+    )
+  )
+
+(defun jain/init-ac-php ()
+  (use-package ac-php
+    :defer t
     )
   )
 
