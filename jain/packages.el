@@ -20,10 +20,7 @@
         impatient-mode
         nodejs-repl
         php-mode
-<<<<<<< HEAD
-=======
         ac-php
->>>>>>> 4f7d5353db637b58c8346e89cdd0ef3a7f8a6be1
         geben
         codebug
         (doxymacs :location local)
@@ -70,11 +67,7 @@
              (> (float-time) (float-time (date-to-time exp)))
            (error nil)))))
 
-<<<<<<< HEAD
-(defun jain/post-init-web-mode ()
-=======
 (defun jain/post-web-mode ()
->>>>>>> 4f7d5353db637b58c8346e89cdd0ef3a7f8a6be1
   "Initialize my package"
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
   (add-hook 'js-mode-hook (lambda ()
@@ -99,11 +92,7 @@
     )
   )
 
-<<<<<<< HEAD
-(defun jain/post-init-php-mode ()
-=======
 (defun jain/post-php-mode ()
->>>>>>> 4f7d5353db637b58c8346e89cdd0ef3a7f8a6be1
   (use-package php-mode
     :init
     (when (spacemacs/system-is-mswindows)
