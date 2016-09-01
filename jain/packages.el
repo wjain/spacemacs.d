@@ -1,3 +1,4 @@
+
 ;;; packages.el --- jain Layer packages File for Spacemacs
 ;;
 ;; Copyright (c) 2012-2014 Sylvain Benner
@@ -16,6 +17,7 @@
       '(
         ;; package names go here
         ;; company-c-headers
+        tern-mode
         web-mode
         impatient-mode
         nodejs-repl
@@ -42,19 +44,23 @@
 (defun jain/post-init-company-c-headers()
   (use-package company-c-headers
     :defer t
-    :init
+    :config
     (progn
-      (setq company-c-headers-path-system
-            (quote
-             (
-              "E:/msys32/usr/include/"
-              "E:/msys32/mingw32/include/"
-              "E:/msys32/mingw32/include/c++/5.2.0/"
-              )))
-      (setq company-c-headers-path-user
-            (quote
-             ("include/" "header"
-              )))
+      (if (spacemacs/system-is-mswindows)
+          (progn
+            (setq company-c-headers-path-system
+                  (quote
+                   (
+                    "E:/msys64/usr/include/"
+                    "E:/msys64/mingw32/include/"
+                    "E:/msys64/mingw32/include/c++/5.2.0/"
+                    )))
+            (setq company-c-headers-path-user
+                  (quote
+                   ("include/" "header"
+                    )))
+            )
+        )
       )
     ))
 
@@ -67,16 +73,13 @@
              (> (float-time) (float-time (date-to-time exp)))
            (error nil)))))
 
-(defun jain/post-web-mode ()
+(defun jain/post-init-web-mode ()
   "Initialize my package"
-  (add-hook 'js2-mode-hook #'js2-refactor-mode)
-  (add-hook 'js-mode-hook (lambda ()
-                            (tern-mode t)
-                            (add-to-list 'company-backends 'company-tern)))
   (if (spacemacs/system-is-mswindows)
       (setq tern-command (cons (executable-find "tern") '()))
     )
-    )
+  (add-hook 'web-mode-hook 'tern-mode)
+  (push '(company-tern) company-backends-web-mode))
 
 (defun jain/init-impatient-mode ()
   "Initialize impatient-mode"
