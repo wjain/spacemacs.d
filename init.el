@@ -57,8 +57,9 @@ values."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      autohotkey
      html
+     typescript
      javascript
-     java
+     ;; java
      (clojure :variables
               clojure-enable-fancify-symbols t)
      php
