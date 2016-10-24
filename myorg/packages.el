@@ -45,7 +45,7 @@
   (myorg/init-myorg-notify)
   )
 
-(defun myorg/init-org-pomodoro ()
+(defun myorg/post-init-org-pomodoro ()
   (progn
     (setq alert-default-style 'growl)
     (when (spacemacs/system-is-mswindows)

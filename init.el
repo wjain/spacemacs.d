@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     sql
      windows-scripts
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -43,7 +44,6 @@ values."
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
      emacs-lisp
-     mysql
      (git :variables
           git-magit-status-fullscreen t)
      github

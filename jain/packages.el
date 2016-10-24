@@ -17,11 +17,10 @@
       '(
         ;; package names go here
         ;; company-c-headers
-        tern-mode
         web-mode
         impatient-mode
         nodejs-repl
-        php-mode
+        php
         ac-php
         geben
         codebug
@@ -95,13 +94,10 @@
     )
   )
 
-(defun jain/post-php-mode ()
-  (use-package php-mode
-    :init
-    (when (spacemacs/system-is-mswindows)
-      (add-to-list 'load-path "~/.emacs.d/.cache/quelpa/build/php-extras")
-      (require 'php-extras)
-      )
+(defun jain/post-init-php ()
+  (when (spacemacs/system-is-mswindows)
+    (add-to-list 'load-path "~/.emacs.d/.cache/quelpa/build/php-extras")
+    (require 'php-extras)
     )
   )
 
