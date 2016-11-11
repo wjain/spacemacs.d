@@ -64,6 +64,7 @@ values."
               clojure-enable-fancify-symbols t)
      php
      ;; ycmd
+     swift
      (c-c++ :variables
             c-c++-enable-clang-support t)
      csharp
