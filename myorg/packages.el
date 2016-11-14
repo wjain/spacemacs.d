@@ -49,8 +49,12 @@
   (progn
     (setq alert-default-style 'growl)
     (when (spacemacs/system-is-mswindows)
-        (setq alert-growl-command "~/.spacemacs.d/plugins/growlforwindows/growlnotify.exe")
-        )))
+      (setq alert-growl-command "~/.spacemacs.d/plugins/growlforwindows/growlnotify.exe")
+      )
+    (when (spacemacs/system-is-linux)
+      (setq alert-default-style 'libnotify)
+      )
+    ))
 
 (defun myorg/init-latex-preview-pane ()
   (use-package latex-preview-pane
