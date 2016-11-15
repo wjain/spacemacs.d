@@ -559,18 +559,12 @@
   )
 
 (defun myorg/init-myorg-notify ()
-  "growl and appt"
-
-  (setq appt-growl-command (executable-find "growlnotify"))
-  (when (spacemacs/system-is-mswindows)
-      (setq appt-growl-command "~/.spacemacs.d/plugins/growlforwindows/growlnotify.exe")
-    )
-
+  "appt notify"
   (setq appt-time-msg-list nil)    ;; clear existing appt list
   (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
   (setq
    appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
-   appt-display-mode-line nil     ;; don't show in the modeline
+   appt-display-mode-line t     ;; don't show in the modeline
    appt-display-format 'window    ;; pass warnings to the designated window function
    )
   (appt-activate 1)                ;; activate appointment notification
@@ -584,26 +578,58 @@
                                 'org-agenda-to-appt)))
 
   (setq appt-coding-system 'utf-8)
-  (if (spacemacs/system-is-mswindows)
-      (progn
-        (setq appt-coding-system 'gbk)
-        )
-      )
 
-  (defun appt-growl-notify (title msg)
+  (when (spacemacs/system-is-mac)
+    (myorg/appt-notify-winmac)
+    )
+  (when (spacemacs/system-is-mswindows)
+    (myorg/appt-notify-winmac)
+    )
+  (when (spacemacs/system-is-linux)
+    (myorg/appt-notify-linux)
+    )
+
+  ;; designate the window function for my-appt-send-notification
+  (defun appt-display-wapper (min-to-app new-time msg)
+    (appt-notify-wrapper
+     (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title
+     (format "'%s'" msg)))                                ;; passed to -message
+
+  (setq appt-disp-window-function (function appt-display-wrapper))
+  (setq appt-delete-window-function 'ignore)
+  )
+
+(defun myorg/appt-notify-winmac ()
+  "growl and appt for windows and mac"
+
+  (when (spacemacs/system-is-mswindows) 
+    (setq appt-growl-command "~/.spacemacs.d/plugins/growlforwindows/growlnotify.exe")
+    (setq appt-coding-system 'gbk)
+    )
+
+  (when (spacemacs/system-is-mswindows) 
+    (setq appt-growl-command (executable-find "growlnotify"))
+    )
+
+  (defun appt-notify-wrapper (title msg)
     (shell-command (concat appt-growl-command
                            " --message "    (encode-coding-string msg appt-coding-system)
                            " --title "      (encode-coding-string title appt-coding-system)
                            " --appIcon Emacs")))
+  )
 
-  ;; designate the window function for my-appt-send-notification
-  (defun my-appt-display (min-to-app new-time msg)
-    (appt-growl-notify
-     (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title
-     (format "'%s'" msg)))                                ;; passed to -message
+(defun myorg/appt-notify-linux ()
+  "appt with growl\libnotify for windows and mac"
+  "http://qiita.com/takushi1969/items/de6eabbef6993ba63b9c"
 
-  (setq appt-disp-window-function (function my-appt-display))
-  (setq appt-delete-window-function 'ignore)
+  (setq appt-notify-command (executable-find "notify-send"))
+  (defun appt-notify-wrapper (title msg)
+    (shell-command (concat appt-notify-command
+                           " --app-name Emacs"
+                           " --icon /usr/share/emacs/24.5/etc/images/icons/hicolor/32x32/apps/emacs.png"
+                           " "     (encode-coding-string title appt-coding-system)
+                           " "     (encode-coding-string msg appt-coding-system)))
+    )
   )
 
 (defun jain/org-archive-done-tasks ()
