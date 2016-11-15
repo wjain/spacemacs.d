@@ -564,7 +564,7 @@
   (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
   (setq
    appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
-   appt-display-mode-line t     ;; don't show in the modeline
+   appt-display-mode-line nil     ;; don't show in the modeline
    appt-display-format 'window    ;; pass warnings to the designated window function
    )
   (appt-activate 1)                ;; activate appointment notification
@@ -590,12 +590,12 @@
     )
 
   ;; designate the window function for my-appt-send-notification
-  (defun appt-display-wapper (min-to-app new-time msg)
+  (defun appt-display-notify (min-to-app new-time msg)
     (appt-notify-wrapper
      (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title
      (format "'%s'" msg)))                                ;; passed to -message
 
-  (setq appt-disp-window-function (function appt-display-wrapper))
+  (setq appt-disp-window-function (function appt-display-notify))
   (setq appt-delete-window-function 'ignore)
   )
 
@@ -619,14 +619,15 @@
   )
 
 (defun myorg/appt-notify-linux ()
-  "appt with growl\libnotify for windows and mac"
+  "appt with libnotify for linux"
   "http://qiita.com/takushi1969/items/de6eabbef6993ba63b9c"
 
   (setq appt-notify-command (executable-find "notify-send"))
   (defun appt-notify-wrapper (title msg)
     (shell-command (concat appt-notify-command
-                           " --app-name Emacs"
-                           " --icon /usr/share/emacs/24.5/etc/images/icons/hicolor/32x32/apps/emacs.png"
+                           " --expire-time=10000"
+                           " --app-name=Emacs"
+                           " --icon=/usr/share/emacs/24.5/etc/images/icons/hicolor/32x32/apps/emacs.png"
                            " "     (encode-coding-string title appt-coding-system)
                            " "     (encode-coding-string msg appt-coding-system)))
     )
