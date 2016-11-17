@@ -578,6 +578,8 @@
                                 'org-agenda-to-appt)))
 
   (setq appt-coding-system 'utf-8)
+  ;; 启动时执行org-agenda-to-appt
+  (org-agenda-to-appt)
 
   (when (spacemacs/system-is-mac)
     (myorg/appt-notify-winmac)
