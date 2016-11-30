@@ -338,7 +338,15 @@ you should place your code here."
 
   (if (spacemacs/system-is-mac)
       (spacemacs//set-monospaced-font   "Source Code Pro" "华文仿宋" 12 14)
-    (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
+    )
+
+  (if (spacemacs/system-is-mswindows)
+      (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
+    )
+
+  (if (spacemacs/system-is-linux)
+      ;; ubuntu
+      (spacemacs//set-monospaced-font   "Source Code Pro" "WenQuanYi Micro Hei Mono" 12 14)
     )
 
   ;; (if (spacemacs/system-is-mswindows)
