@@ -25,7 +25,6 @@
         geben
         codebug
         (doxymacs :location local)
-        swift
         ;; malabar-mode
         meghanada
         ))
@@ -142,12 +141,6 @@
             (doxymacs-font-lock)))
       (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
       (spacemacs|hide-lighter doxymacs-mode))))
-
-(defun jain/post-init-swift ()
-  (when (spacemacs/system-is-linux)
-    (setq swift-mode:repl-executable "swift")
-    )
-  )
 
 (defun jain/init-malabar-mode ()
   "Initialize malabar-mode"
