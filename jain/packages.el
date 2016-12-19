@@ -26,6 +26,8 @@
         codebug
         (doxymacs :location local)
         swift
+        ;; malabar-mode
+        meghanada
         ))
 
 ;; List of packages to exclude.
@@ -146,3 +148,28 @@
     (setq swift-mode:repl-executable "swift")
     )
   )
+
+(defun jain/init-malabar-mode ()
+  "Initialize malabar-mode"
+  (use-package malabar-mode
+    :config
+    (progn
+      (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
+      (add-hook 'malabar-mode-hook
+                (lambda ()
+                  (add-hook 'after-save-hook 'malabar-compile-file-silently
+                            nil t)))
+      ))
+  )
+
+(defun jain/init-meghanada ()
+  "Initialize meghanada"
+  (use-package meghanada
+    :config
+    (progn
+      (add-hook 'java-mode-hook
+                (lambda ()
+                  ;; meghanada-mode on
+                  (meghanada-mode t)
+                  (add-hook 'before-save-hook 'delete-trailing-whitespace)))
+      )))
