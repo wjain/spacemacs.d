@@ -117,6 +117,7 @@
 
 (defun jain/init-ac-php ()
   (add-hook 'php-mode-hook '(lambda ()
+                              (require 'ac-php)
                               (define-key php-mode-map  (kbd "C-.") 'ac-php-find-symbol-at-point)   ;goto define
                               (define-key php-mode-map  (kbd "C-,") 'ac-php-location-stack-back   ) ;go back
                               ))
