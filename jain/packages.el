@@ -175,5 +175,6 @@
                 (lambda ()
                   ;; meghanada-mode on
                   (meghanada-mode t)
-                  (add-hook 'before-save-hook 'delete-trailing-whitespace)))
+                  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+                  (add-hook 'before-save-hook 'meghanada-code-beautify-befor-save)))
       )))
