@@ -21,8 +21,8 @@
         impatient-mode
         nodejs-repl
         php
-        company-php
-        ac-php
+        ;; company-php
+        ;; ac-php
         geben
         codebug
         (doxymacs :location local)
