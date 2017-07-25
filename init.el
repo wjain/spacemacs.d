@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     asciidoc
      nginx
      sql
      windows-scripts
@@ -96,6 +97,7 @@ values."
    dotspacemacs-excluded-packages '(
                                     evil-indent-textobject
                                     evil-mc
+                                    chinese-fonts-setup
                                     )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -359,37 +361,11 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (global-company-mode t)
 
-  (setq solarized-use-variable-pitch nil
-        solarized-scale-org-headlines nil)
-  (spacemacs/load-theme 'solarized-dark)
-
-  ;; (setq monokai-use-variable-pitch nil
-  ;;       monokai-height-plus-1 1
-  ;;       monokai-height-plus-2 1
-  ;;       monokai-height-plus-3 1
-  ;;       monokai-height-plus-4 1
-  ;;       monokai-height-minus-1 1
-  ;;       )
-  ;; (spacemacs/load-theme 'monokai)
-
-  (if (spacemacs/system-is-mac)
-      (spacemacs//set-monospaced-font   "Source Code Pro" "华文仿宋" 12 14)
-    )
-
   (if (spacemacs/system-is-mswindows)
-      (spacemacs//set-monospaced-font   "Source Code Pro" "新宋体" 12 14)
-    )
+      (set-variable 'ycmd-server-command `("python", "-u", (expand-file-name "~/github/ycmd/ycmd/__main__.py")))
+    (set-variable 'ycmd-server-command `("python", (expand-file-name "~/github/ycmd/ycmd/__main__.py"))))
 
-  (if (spacemacs/system-is-linux)
-      ;; ubuntu
-      (spacemacs//set-monospaced-font   "Source Code Pro" "WenQuanYi Micro Hei Mono" 12 14)
-    )
-
-  ;; (if (spacemacs/system-is-mswindows)
-  ;;     (set-variable 'ycmd-server-command `("e:/Python27/python.exe", "-u", (expand-file-name "~/github/ycmd/ycmd/__main__.py")))
-  ;;   (set-variable 'ycmd-server-command `("python", (expand-file-name "~/github/ycmd/ycmd/__main__.py"))))
-
-  ;; (set-variable 'ycmd-global-config "~/.spacemacs.d/plugins/ycmd/ycm_extra_conf.py")
+  (set-variable 'ycmd-global-config "~/.spacemacs.d/plugins/ycmd/ycm_extra_conf.py")
 
   ;; (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
   ;; (add-hook 'c-mode-hook 'ycmd-mode)
@@ -425,9 +401,10 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (git mustache org-page flycheck-pos-tip zenburn-theme zeal-at-point youdao-dictionary names chinese-word-at-point yapfify xterm-color web-mode web-beautify unfill tide typescript-mode tagedit swift-mode stickyfunc-enhance srefactor sql-indent solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode prodigy powershell pip-requirements phpunit phpcbf php-auto-yasnippets pangu-spacing pandoc-mode ox-pandoc orgit org-projectile org-present org-pomodoro alert log4e gntp org-download omnisharp nginx-mode mwim multi-term monokai-theme mmm-mode markdown-toc markdown-mode magithub magit-gitflow magit-gh-pulls livid-mode skewer-mode simple-httpd live-py-mode less-css-mode json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc ibuffer-projectile hy-mode htmlize helm-pydoc helm-gtags helm-gitignore helm-dash helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck find-by-pinyin-dired evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode drupal-mode php-mode disaster diff-hl cython-mode csharp-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-c-headers company-anaconda company coffee-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode chinese-pyim chinese-pyim-basedict pos-tip auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ahk-mode ace-pinyin pinyinlib ace-jump-mode ac-ispell auto-complete spaceline paradox highlight-numbers helm-purpose window-purpose helm-projectile helm-make projectile evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu use-package evil-search-highlight-persist evil eval-sexp-fu dumb-jump ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen toc-org powerline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop imenu-list helm-mode-manager epl helm-descbinds helm-ag google-translate golden-ratio flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-numbers evil-nerd-commenter goto-chg highlight elisp-slime-nav diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup evil-unimpaired f s dash undo-tree org-plus-contrib hydra async aggressive-indent adaptive-wrap ace-window avy))))
+    (counsel-dash counsel swiper ivy org-brain zenburn-theme evil-org add-node-modules-path sayid evil-lion password-generator editorconfig adoc-mode markup-faces realgud test-simple loc-changes load-relative orgit flycheck-ycmd company-ycmd ycmd request-deferred deferred string-inflection symon nodejs-repl meghanada latex-preview-pane impatient-mode helm-flx geben flx-ido company-php ac-php-core xcscope codebug format-sql browse-at-remote org-page git mustache flycheck-pos-tip zeal-at-point youdao-dictionary names chinese-word-at-point yapfify xterm-color web-mode web-beautify unfill tide typescript-mode tagedit swift-mode stickyfunc-enhance srefactor sql-indent solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode prodigy powershell pip-requirements phpunit phpcbf php-auto-yasnippets pangu-spacing pandoc-mode ox-pandoc org-projectile org-present org-pomodoro alert log4e gntp org-download omnisharp nginx-mode mwim multi-term monokai-theme mmm-mode markdown-toc markdown-mode magithub magit-gitflow magit-gh-pulls livid-mode skewer-mode simple-httpd live-py-mode less-css-mode json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc ibuffer-projectile hy-mode htmlize helm-pydoc helm-gtags helm-gitignore helm-dash helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck find-by-pinyin-dired evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode drupal-mode php-mode disaster diff-hl cython-mode csharp-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-c-headers company-anaconda company coffee-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode chinese-pyim chinese-pyim-basedict pos-tip auto-yasnippet auto-dictionary anaconda-mode pythonic ahk-mode ace-pinyin pinyinlib ace-jump-mode ac-ispell auto-complete spaceline paradox highlight-numbers helm-purpose window-purpose helm-projectile helm-make projectile evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu use-package evil-search-highlight-persist evil eval-sexp-fu dumb-jump ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen toc-org powerline smartparens restart-emacs request rainbow-delimiters popwin persp-mode pcre2el spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop imenu-list helm-mode-manager epl helm-descbinds helm-ag google-translate golden-ratio flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-numbers evil-nerd-commenter goto-chg highlight elisp-slime-nav diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup evil-unimpaired f s dash undo-tree org-plus-contrib hydra async aggressive-indent adaptive-wrap ace-window avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
