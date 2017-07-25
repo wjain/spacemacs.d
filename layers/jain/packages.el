@@ -28,6 +28,7 @@
         (doxymacs :location local)
         ;; malabar-mode
         meghanada
+        sql
         ))
 
 ;; List of packages to exclude.
@@ -90,6 +91,12 @@
     )
   )
 
+(defun jain/post-init-sql ()
+  (use-package format-sql
+    :defer t
+    )
+  )
+
 (defun jain/init-nodejs-repl ()
   "Initialize nodejs-repl-mode"
   (use-package nodejs-repl
@@ -101,17 +108,6 @@
   (when (spacemacs/system-is-mswindows)
     (add-to-list 'load-path "~/.emacs.d/.cache/quelpa/build/php-extras")
     (require 'php-extras)
-    )
-  )
-
-(defun jain/init-company-php ()
-  (add-hook 'php-mode-hook '(lambda ()
-                              (company-mode t)
-                              (add-to-list 'company-backends 'company-ac-php-backend)
-                              (define-key php-mode-map  (kbd "C-M-i") 'company-ac-php-backend)
-                              ))
-  (use-package company-php
-    :defer t
     )
   )
 
@@ -178,3 +174,4 @@
                   (add-hook 'before-save-hook 'delete-trailing-whitespace)
                   (add-hook 'before-save-hook 'meghanada-code-beautify-befor-save)))
       )))
+
