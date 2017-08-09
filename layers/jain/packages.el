@@ -18,7 +18,7 @@
         ;; package names go here
         ;; company-c-headers
         web-mode
-        impatient-mode
+        ;; impatient-mode
         nodejs-repl
         php
         ;; company-php

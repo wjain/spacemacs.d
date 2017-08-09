@@ -86,6 +86,7 @@
 
 
 (init-jain)
+(config-chinese-font)
 
 ;; Fix youdao-dictionary-search `Invalid date:'
 (defun url-cookie-expired-p (cookie)
