@@ -350,6 +350,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+   (setq exec-path-from-shell-arguments '("-c"))
   )
 
 (defun dotspacemacs/user-config ()
@@ -367,7 +368,7 @@ you should place your code here."
 
   (set-variable 'ycmd-global-config "~/.spacemacs.d/plugins/ycmd/ycm_extra_conf.py")
 
-  ;; (setq omnisharp-server-executable-path "~/github/ycmd/third_party/OmniSharpServer/OmniSharp/bin/Release/OmniSharp.exe")
+  (setq omnisharp-server-executable-path "~/github/OmniSharp/OmniSharp.exe")
   ;; (add-hook 'c-mode-hook 'ycmd-mode)
   ;; (add-hook 'c++-mode-hook 'ycmd-mode)
 
