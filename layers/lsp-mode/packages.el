@@ -1,4 +1,4 @@
-;;; packages.el --- vue-mode layer packages file for Spacemacs.
+;;; packages.el --- lsp-mode layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
 ;;
@@ -18,23 +18,22 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `vue-mode-packages'. Then, for each package PACKAGE:
+;; added to `lsp-mode-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `vue-mode/init-PACKAGE' to load and initialize the package.
+;;   function `lsp-mode/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `vue-mode/pre-init-PACKAGE' and/or
-;;   `vue-mode/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `lsp-mode/pre-init-PACKAGE' and/or
+;;   `lsp-mode/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst vue-mode-packages
+(defconst lsp-mode-packages
   '(
-    vue-mode
-    lsp-vue
+    lsp-mode
     )
-  "The list of Lisp packages required by the vue-mode layer.
+  "The list of Lisp packages required by the lsp-mode layer.
 
 Each entry is either:
 
@@ -61,16 +60,8 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-(setq vue-mode-excluded-packages '())
+(setq lsp-mode-excluded-packages '())
 
-(defun vue-mode/init-vue-mode ()
-  (use-package vue-mode))
-
-(defun vue-mode/init-lsp-vue ()
-  (use-package lsp-vue)
-  )
-
-(defun vue-mode/post-lst-vue ()
-  (add-hook 'vue-mode-hook #'lsp-vue-mmm-enable)
-  )
+(defun lsp-mode/init-lsp-mode ()
+  (use-package lsp-mode))
 ;;; packages.el ends here
