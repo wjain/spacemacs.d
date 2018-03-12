@@ -77,6 +77,7 @@ values."
      ;; rust
      vue-mode
      react
+     dart
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -92,6 +93,7 @@ values."
      chrome
      lsp-mode
      lsp-vue
+     common-lisp
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -360,7 +362,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
    (setq exec-path-from-shell-arguments '("-c"))
 
    ;; http://www.4gamers.cn/
-   (setq configuration-layer--elpa-archives
+   (setq configuration-layer-elpa-archives
          '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
            ("org-cn"   . "http://elpa.emacs-china.org/org/")
            ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
@@ -399,6 +401,8 @@ you should place your code here."
 
   ;; (setq racer-cmd "~/.cargo/bin/racer")
 
+  ;; (setq inferior-lisp-program "sbcl")
+
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 )
@@ -415,11 +419,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (ox-pandoc overseer nameless diminish clojure-cheatsheet zenburn-theme youdao-dictionary yapfify xterm-color ws-butler winum which-key web-mode web-beautify vue-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tide tagedit symon swift-mode string-inflection stickyfunc-enhance srefactor sql-indent spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sayid sass-mode restart-emacs realgud rainbow-delimiters racer pyvenv pytest pyim pyenv-mode py-isort pug-mode prodigy powershell popwin pip-requirements php+-mode persp-mode pcre2el password-generator paradox pangu-spacing pandoc-mode orgit org-projectile org-present org-pomodoro org-page org-download org-bullets org-brain open-junk-file omnisharp nodejs-repl nginx-mode neotree mwim multi-term move-text monokai-theme meghanada markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode latex-preview-pane json-mode js2-refactor js-doc info+ indent-guide impatient-mode ibuffer-projectile hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gmail-message-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags geben fuzzy flyspell-correct-helm flymd flycheck-rust flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav editorconfig edit-server dumb-jump disaster diff-hl define-word cython-mode company-web company-tern company-statistics company-rtags company-c-headers company-anaconda column-enforce-mode coffee-mode codebug cmake-mode cmake-ide clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cargo browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile ahk-mode aggressive-indent adoc-mode adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell)))
- '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838"))))
+    (slime-company slime common-lisp-snippets zenburn-theme zeal-at-point youdao-dictionary yasnippet-snippets yapfify xterm-color ws-butler winum which-key web-mode web-beautify vue-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tide tagedit symon swift-mode string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons solarized-theme smeargle slim-mode shell-pop scss-mode sayid sass-mode restart-emacs realgud rainbow-delimiters racer pyvenv pytest pyim pyenv-mode py-isort pug-mode prodigy powershell popwin pippel pip-requirements php+-mode persp-mode pcre2el password-generator paradox pangu-spacing pandoc-mode ox-pandoc overseer orgit org-projectile org-present org-pomodoro org-page org-mime org-download org-bullets org-brain open-junk-file omnisharp nodejs-repl nginx-mode neotree nameless mwim multi-term move-text monokai-theme meghanada markdown-toc magit-gitflow magit-gh-pulls macrostep lsp-vue lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode latex-preview-pane json-mode js2-refactor js-doc info+ indent-guide importmagic impatient-mode ibuffer-projectile hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate google-c-style golden-ratio gnuplot gmail-message-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags geben fuzzy flyspell-correct-helm flymd flycheck-rust flycheck-rtags flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav editorconfig edit-server dumb-jump disaster diff-hl define-word cython-mode counsel-projectile company-web company-tern company-statistics company-rtags company-c-headers company-anaconda column-enforce-mode coffee-mode codebug cmake-mode cmake-ide clojure-snippets clojure-cheatsheet clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cargo browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile ahk-mode aggressive-indent adoc-mode adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
