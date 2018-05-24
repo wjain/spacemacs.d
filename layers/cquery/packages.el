@@ -1,4 +1,6 @@
-(defconst cquery-packages '((cquery)))
+(defconst cquery-packages
+  '(cquery)
+  )
 
 ;; See also https://github.com/cquery-project/cquery/wiki/Emacs
 (defun cquery/init-cquery ()
