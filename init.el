@@ -34,10 +34,12 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     asciidoc
-     nginx
+     graphviz
      sql
-     windows-scripts
+     ;; asciidoc
+     ;; nginx
+     ;; sql
+     ;; windows-scripts
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -55,8 +57,8 @@ This function should only modify configuration layer settings."
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
+     ;; spell-checking
+     ;; syntax-checking
      version-control
      ;; semantic                           ; too slow
      github
@@ -86,7 +88,7 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     search-engine
+     ;; search-engine
      python
      gtags
      (chinese :variables
@@ -98,8 +100,8 @@ This function should only modify configuration layer settings."
      vue
      ;; dokuwiki-mode
      chrome
-     common-lisp
-     restclient
+     ;; common-lisp
+     ;; restclient
      )
 
    ;; List of additional packages that will be installed without being
