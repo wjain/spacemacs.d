@@ -97,6 +97,7 @@ This function should only modify configuration layer settings."
      myorg
      jain
      lsp
+     tabnine
      vue
      ;; dokuwiki-mode
      chrome
