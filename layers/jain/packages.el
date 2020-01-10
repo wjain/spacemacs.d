@@ -18,7 +18,6 @@
         ;; package names go here
         web-mode
         ;; impatient-mode
-        nodejs-repl
         php
         ;; company-php
         ;; ac-php
@@ -67,13 +66,6 @@
 
 (defun jain/post-init-sql ()
   (use-package format-sql
-    :defer t
-    )
-  )
-
-(defun jain/init-nodejs-repl ()
-  "Initialize nodejs-repl-mode"
-  (use-package nodejs-repl
     :defer t
     )
   )
