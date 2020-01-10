@@ -512,6 +512,8 @@ before packages are loaded."
 
   (global-company-mode t)
 
+  (setq lsp-java-jdt-download-url "http://localhost/jdt-language-server-latest.tar.gz")
+
   ;; https://github.com/syl20bnr/spacemacs/issues/2705
   ;; (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 )

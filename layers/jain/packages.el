@@ -18,13 +18,6 @@
         ;; package names go here
         web-mode
         ;; impatient-mode
-        php
-        ;; company-php
-        ;; ac-php
-        geben
-        codebug
-        (doxymacs :location local)
-        sql
         ))
 
 ;; List of packages to exclude.
@@ -63,54 +56,3 @@
     :defer t
     )
   )
-
-(defun jain/post-init-sql ()
-  (use-package format-sql
-    :defer t
-    )
-  )
-
-(defun jain/post-init-php ()
-  (when (spacemacs/system-is-mswindows)
-    (add-to-list 'load-path "~/.emacs.d/.cache/quelpa/build/php-extras")
-    (require 'php-extras)
-    )
-  )
-
-(defun jain/init-ac-php ()
-  (add-hook 'php-mode-hook '(lambda ()
-                              (require 'ac-php)
-                              (define-key php-mode-map  (kbd "C-.") 'ac-php-find-symbol-at-point)   ;goto define
-                              (define-key php-mode-map  (kbd "C-,") 'ac-php-location-stack-back   ) ;go back
-                              ))
-  (use-package ac-php
-    :defer t
-    )
-  )
-
-(defun jain/init-geben ()
-  (use-package geben
-    :defer t
-    )
-  )
-
-(defun jain/init-codebug ()
-  (use-package codebug
-    :defer t
-    )
-  )
-
-(defun jain/init-doxymacs ()
-  "Initialize doxymacs"
-  (use-package doxymacs
-    :init
-    (progn
-      (add-hook 'c-mode-common-hook 'doxymacs-mode)
-      (add-hook 'php-mode-common-hook 'doxymacs-mode))
-    :config
-    (progn
-      (defun my-doxymacs-font-lock-hook ()
-        (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode) (eq major-mode 'php-mode))
-            (doxymacs-font-lock)))
-      (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
-      (spacemacs|hide-lighter doxymacs-mode))))
