@@ -71,7 +71,7 @@ This function should only modify configuration layer settings."
      html
      typescript
      javascript
-     ;; java
+     java
      (clojure :variables
               clojure-enable-fancify-symbols t)
      ;; phpplus
