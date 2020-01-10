@@ -16,7 +16,6 @@
 (setq jain-packages
       '(
         ;; package names go here
-        ;; company-c-headers
         web-mode
         ;; impatient-mode
         nodejs-repl
@@ -26,8 +25,6 @@
         geben
         codebug
         (doxymacs :location local)
-        ;; malabar-mode
-        meghanada
         sql
         ))
 
@@ -43,29 +40,6 @@
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
-
-(defun jain/post-init-company-c-headers()
-  (use-package company-c-headers
-    :defer t
-    :config
-    (progn
-      (if (spacemacs/system-is-mswindows)
-          (progn
-            (setq company-c-headers-path-system
-                  (quote
-                   (
-                    "E:/msys64/usr/include/"
-                    "E:/msys64/mingw32/include/"
-                    "E:/msys64/mingw32/include/c++/5.2.0/"
-                    )))
-            (setq company-c-headers-path-user
-                  (quote
-                   ("include/" "header"
-                    )))
-            )
-        )
-      )
-    ))
 
 ;; Fix youdao-dictionary-search `Invalid date:'
 (defun url-cookie-expired-p (cookie)
@@ -148,30 +122,3 @@
             (doxymacs-font-lock)))
       (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
       (spacemacs|hide-lighter doxymacs-mode))))
-
-(defun jain/init-malabar-mode ()
-  "Initialize malabar-mode"
-  (use-package malabar-mode
-    :config
-    (progn
-      (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
-      (add-hook 'malabar-mode-hook
-                (lambda ()
-                  (add-hook 'after-save-hook 'malabar-compile-file-silently
-                            nil t)))
-      ))
-  )
-
-(defun jain/init-meghanada ()
-  "Initialize meghanada"
-  (use-package meghanada
-    :config
-    (progn
-      (add-hook 'java-mode-hook
-                (lambda ()
-                  ;; meghanada-mode on
-                  (meghanada-mode t)
-                  (add-hook 'before-save-hook 'delete-trailing-whitespace)
-                  (add-hook 'before-save-hook 'meghanada-code-beautify-befor-save)))
-      )))
-
