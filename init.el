@@ -67,6 +67,7 @@ This function should only modify configuration layer settings."
      docker
      prodigy
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     tabnine
      autohotkey
      html
      typescript
@@ -97,7 +98,6 @@ This function should only modify configuration layer settings."
      myorg
      jain
      lsp
-     tabnine
      vue
      ;; dokuwiki-mode
      chrome
