@@ -104,6 +104,7 @@ This function should only modify configuration layer settings."
      chrome
      ;; common-lisp
      ;; restclient
+     org-roam
      )
 
    ;; List of additional packages that will be installed without being
