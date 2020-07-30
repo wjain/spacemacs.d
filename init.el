@@ -35,10 +35,9 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(
      graphviz
-     sql
+     ;; sql
      ;; asciidoc
      ;; nginx
-     ;; sql
      ;; windows-scripts
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -92,7 +91,8 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      ;; search-engine
      python
-     gtags
+     dap
+     ;; gtags
      (chinese :variables
               chinese-enable-youdao-dict t)
      ;; vbnet
