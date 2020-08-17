@@ -37,7 +37,7 @@
     :hook
     (after-init . org-roam-mode)
     :custom
-    (org-roam-directory "/path/to/org-files/")
+    (org-roam-directory "~/org-roam/")
     :init
     (progn
       (spacemacs/declare-prefix "ar" "org-roam")
