@@ -517,11 +517,13 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
-   ;; http://www.4gamers.cn/
-   (setq configuration-layer-elpa-archives
-         '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-           ("org-cn"   . "http://elpa.emacs-china.org/org/")
-           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  ;; http://www.4gamers.cn/
+  (setq configuration-layer-elpa-archives
+        '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+          ("org-cn"   . "http://elpa.emacs-china.org/org/")
+          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+
+  (setq  package-check-signature nil)
   )
 
 (defun dotspacemacs/user-load ()
