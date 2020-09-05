@@ -102,6 +102,7 @@ This function should only modify configuration layer settings."
      vue
      ;; dokuwiki-mode
      chrome
+     pdf
      ;; common-lisp
      ;; restclient
      org-roam
