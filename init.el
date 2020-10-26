@@ -80,7 +80,7 @@ This function should only modify configuration layer settings."
      ;; rtags
      ;; cquery
      swift
-     rust
+     (rust :variables rust-backend 'racer)
      ;; (c-c++ :variables
      ;;        c-c++-enable-clang-support t)
      csharp
