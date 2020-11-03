@@ -17,6 +17,7 @@
       '(
         ;; package names go here
         web-mode
+        rime
         ;; impatient-mode
         ))
 
@@ -54,5 +55,12 @@
   "Initialize impatient-mode"
   (use-package impatient-mode
     :defer t
+    )
+  )
+
+(defun jain/init-rime ()
+  "Initialize rime"
+  (use-package rime
+    :custom (default-input-method "rime")
     )
   )
