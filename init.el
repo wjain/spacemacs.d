@@ -520,7 +520,8 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; UTF-8 as default encoding
   (set-language-environment "UTF-8")
-  (setq file-name-coding-system 'gbk)
+  (if (spacemacs/system-is-mswindows)
+      (setq file-name-coding-system 'gbk))
 
   ;; http://www.4gamers.cn/
   (setq configuration-layer-elpa-archives
