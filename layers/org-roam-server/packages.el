@@ -72,6 +72,7 @@ Each entry is either:
            org-roam-server-network-arrows nil
            org-roam-server-network-label-truncate t
            org-roam-server-network-label-truncate-length 60
-           org-roam-server-network-label-wrap-length 20))
+           org-roam-server-network-label-wrap-length 20)
+     (require 'org-roam-protocol))
  )
 ;;; packages.el ends here
