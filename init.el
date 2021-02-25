@@ -52,7 +52,9 @@ This function should only modify configuration layer settings."
      markdown
      multiple-cursors
      neotree
-     org
+     (org :variables
+          org-enable-roam-support t)
+     org-roam-server
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -105,7 +107,6 @@ This function should only modify configuration layer settings."
      pdf
      ;; common-lisp
      ;; restclient
-     org-roam
      )
 
    ;; List of additional packages that will be installed without being
@@ -517,6 +518,9 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  ;; UTF-8 as default encoding
+  (set-language-environment "UTF-8")
+  (setq file-name-coding-system 'gbk)
 
   ;; http://www.4gamers.cn/
   (setq configuration-layer-elpa-archives
@@ -540,6 +544,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (require org-protocol)
+  (require org-roam-protocol)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
