@@ -107,6 +107,7 @@ This function should only modify configuration layer settings."
      pdf
      ;; common-lisp
      ;; restclient
+     eaf
      )
 
    ;; List of additional packages that will be installed without being
