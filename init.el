@@ -87,7 +87,7 @@ This function should only modify configuration layer settings."
      ;;        c-c++-enable-clang-support t)
      csharp
      react
-     ;; dart
+     dart
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -101,7 +101,8 @@ This function should only modify configuration layer settings."
      myorg
      jain
      lsp
-     vue
+     tern
+     (vue :variables vue-backend 'lsp)
      ;; dokuwiki-mode
      chrome
      pdf
