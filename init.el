@@ -53,7 +53,9 @@ This function should only modify configuration layer settings."
      multiple-cursors
      neotree
      (org :variables
-          org-enable-roam-support t)
+          org-enable-roam-support t
+          org-enable-roam-server t
+          org-enable-roam-protocol t)
      org-roam-server
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -83,8 +85,8 @@ This function should only modify configuration layer settings."
      ;; cquery
      swift
      (rust :variables rust-backend 'racer)
-     ;; (c-c++ :variables
-     ;;        c-c++-enable-clang-support t)
+     (c-c++ :variables
+            c-c++-backend 'lsp-clangd)
      csharp
      react
      dart
