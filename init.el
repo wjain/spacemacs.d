@@ -54,9 +54,8 @@ This function should only modify configuration layer settings."
      neotree
      (org :variables
           org-enable-roam-support t
-          org-enable-roam-server t
+          org-enable-roam-ui t
           org-enable-roam-protocol t)
-     org-roam-server
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
