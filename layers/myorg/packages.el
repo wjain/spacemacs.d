@@ -513,7 +513,6 @@
        (gnuplot . t)
        (clojure . t)
        (shell . t)
-       (ledger . t)
        (org . t)
        (plantuml . t)
        (latex . t)

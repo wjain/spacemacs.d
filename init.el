@@ -61,9 +61,8 @@ This function should only modify configuration layer settings."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
+     eaf
      version-control
-     ;; semantic                           ; too slow
-     github
      plantuml
      pandoc
      dash
@@ -78,10 +77,6 @@ This function should only modify configuration layer settings."
      (java :variables java-backend 'lsp)
      (clojure :variables
               clojure-enable-fancify-symbols t)
-     ;; phpplus
-     ;; ycmd
-     ;; rtags
-     ;; cquery
      swift
      (rust :variables rust-backend 'racer)
      (c-c++ :variables
@@ -95,21 +90,17 @@ This function should only modify configuration layer settings."
      ;; search-engine
      python
      dap
-     ;; gtags
      (chinese :variables
               chinese-enable-youdao-dict t)
      ;; vbnet
      myorg
-     jain
      lsp
      tern
      (vue :variables vue-backend 'lsp)
-     ;; dokuwiki-mode
      chrome
      pdf
      ;; common-lisp
      ;; restclient
-     eaf
      )
 
    ;; List of additional packages that will be installed without being
