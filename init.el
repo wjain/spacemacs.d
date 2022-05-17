@@ -67,18 +67,18 @@ This function should only modify configuration layer settings."
      pandoc
      dash
      docker
-     prodigy
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     tabnine
      autohotkey
      html
-     typescript
-     javascript
+     (javascript :variables
+             javascript-backend 'tide)
+     (typescript :variables
+             typescript-backend 'tide)
      (java :variables java-backend 'lsp)
      (clojure :variables
               clojure-enable-fancify-symbols t)
      swift
-     (rust :variables rust-backend 'racer)
+     (rust :variables rust-backend 'lsp)
      (c-c++ :variables
             c-c++-backend 'lsp-clangd)
      csharp
