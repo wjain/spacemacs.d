@@ -1,8 +1,8 @@
 * spacemacs.d
 
 * shell:
-  ```sh
+  #+BEGIN_SRC shell
   git clone https://github.com/wjain/spacemacs.d.git .spacemacs.d
-  ```
+  #+END_SRC
 
 My private spacemacs configure.
